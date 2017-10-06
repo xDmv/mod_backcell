@@ -1,0 +1,57 @@
+<modification>
+	<name>Cellback</name>
+	<code>Cellback</code>
+	<version>1.0.1</version>
+	<author>makushin.dima@gmail.com</author>
+	<link>http://oilplus.bestwatch.in.ua</link>
+	<file path="admin/controller/common/menu.php">
+		<operation error="skip">
+			<search><![CDATA[$data['text_backup'] = $this->language->get('text_backup');]]></search>
+			<add position="after"><![CDATA[
+		$data['text_cellback'] = $this->language->get('text_cellback');
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search><![CDATA[$data['backup'] = $this->url->link('module/backup', 'token=' . $this->session->data['token'],]]></search>
+			<add position="after"><![CDATA[
+		$data['cellback'] = $this->url->link('module/cellback', 'token=' . $this->session->data['token'], (version_compare(PHP_VERSION, '2.2.0.0') >= 0) ? true : 'SSL');
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/language/*/common/menu.php">
+		<operation error="skip">
+			<search><![CDATA[$_['text_backup']]]></search>
+			<add position="after"><![CDATA[
+				$_['text_cellback'] = 'Back cell';
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/view/template/common/menu.tpl">
+		<operation error="skip">
+			<search><![CDATA[<li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>]]></search>
+			<add position="replace"><![CDATA[<li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li><li><a href="<?php echo $cellback; ?>"><?php echo $text_cellback; ?></a></li>]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/common/column_left.php">
+		<operation error="skip">
+			<search><![CDATA[if ($this->user->hasPermission('access', 'tool/log')) {]]></search>
+			<add position="before"><![CDATA[
+			if ($this->user->hasPermission('access', 'module/cellback')) {
+				$tool[] = array(
+					'name'	   => $this->language->get('text_cellback'),
+					'href'     => $this->url->link('module/cellback', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/language/*/common/column_left.php">
+		<operation error="skip">
+			<search><![CDATA[$_['text_backup']]]></search>
+			<add position="after"><![CDATA[
+$_['text_cellback']             = 'Cellback';
+			]]></add>
+		</operation>
+	</file>
+</modification>
