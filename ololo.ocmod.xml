@@ -2,7 +2,7 @@
 	<name>Cellback</name>
 	<code>Cellback</code>
 	<version>1.0.1</version>
-	<author>makushin.dima@gmail.com</author>
+	<author>xx.xx@gmail.com</author>
 	<link>http://oilplus.bestwatch.in.ua</link>
 	<file path="admin/controller/common/menu.php">
 		<operation error="skip">
