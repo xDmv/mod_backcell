@@ -155,13 +155,6 @@ class ControllerToolExportImport extends Controller {
 		$data['text_no'] = $this->language->get('text_no');
 		$data['text_loading_notifications'] = $this->language->get( 'text_loading_notifications' );
 		$data['text_retry'] = $this->language->get('text_retry');
-		$data['text_etap0'] = $this->language->get( 'text_etap0' );
-		$data['text_etap1m'] = $this->language->get( 'text_etap1m' );
-		$data['text_etap1c'] = $this->language->get( 'text_etap1c' );
-		$data['text_etap2'] = $this->language->get( 'text_etap2' );
-		$data['text_etap3'] = $this->language->get( 'text_etap3' );
-		$data['text_cheslo'] = $this->language->get( 'text_cheslo' );
-		$data['text_procent'] = $this->language->get( 'text_procent' );
 
 		$data['entry_export'] = $this->language->get( 'entry_export' );
 		$data['entry_import'] = $this->language->get( 'entry_import' );
@@ -368,13 +361,24 @@ class ControllerToolExportImport extends Controller {
 		$max_customer_id = $this->model_tool_export_import->getMaxCustomerId();
 		$count_customer = $this->model_tool_export_import->getCountCustomer();
 
-		// edit_prise
+		// edit_prise start
+		$data['text_etap0'] = $this->language->get( 'text_etap0' );
+		$data['text_etap1m'] = $this->language->get( 'text_etap1m' );
+		$data['text_etap1c'] = $this->language->get( 'text_etap1c' );
+		$data['text_etap2'] = $this->language->get( 'text_etap2' );
+		$data['text_etap3'] = $this->language->get( 'text_etap3' );
+		$data['text_cheslo'] = $this->language->get( 'text_cheslo' );
+		$data['text_procent'] = $this->language->get( 'text_procent' );
+		$data['text_procent'] = $this->language->get( 'text_procent' );
+    $data['text_no_data'] = $this->language->get( 'text_no_data' );
+
 		$data['$table_m'] = array();
 		$data['$table_c'] = array();
-		//$this->load->model('tool/export_import');
+
 		$data['n_manufacture'] = $this->model_tool_export_import->getNManufacture();
 		$data['n_category'] = $this->model_tool_export_import->getNCategory();
 
+		// edit_prise end
 		$data['min_product_id'] = $min_product_id;
 		$data['max_product_id'] = $max_product_id;
 		$data['count_product'] = $count_product;

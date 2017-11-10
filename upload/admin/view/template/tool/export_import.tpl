@@ -310,7 +310,14 @@
 											<td class="text-center"><?php echo $table_up;?></td>
 										</tr>
 									</thead>
-									<tr><?php if(!$n_manufacture) { echo "нет данных"; }  ?></tr>
+									<?php if(!$n_manufacture) { echo "<tr>
+										<td class='text-center'>".$text_no_data."</td>
+										<td class='text-center'>".$text_no_data."</td>
+										<td class='text-center'>".$text_no_data."</td>
+										<td class='text-center'>".$text_no_data."</td>
+										<td class='text-center'>".$text_no_data."</td>
+										<td class='text-center'>".$text_no_data."</td>
+									</tr>"; } else {?>
 									<?php foreach ($n_manufacture as $table_m) { ?>
 										<tr>
 											<td class="text-center"><?php echo $table_m['ID'];?></td>
@@ -321,7 +328,7 @@
 											<td class="text-center"><?php echo "up";?></td>
 										</tr>
 									<?php } ?>
-
+									<?php } ?>
 								</table>
 
 						</div>
@@ -374,7 +381,14 @@
 									<td class="text-center"><?php echo $table_up;?></td>
 								</tr>
 							</thead>
-							<?php if(!$n_category) { echo "<tr>нет данных</tr>"; } ?>
+							<?php if(!$n_category) { echo "<tr>
+								<td class='text-center'>".$text_no_data."</td>
+								<td class='text-center'>".$text_no_data."</td>
+								<td class='text-center'>".$text_no_data."</td>
+								<td class='text-center'>".$text_no_data."</td>
+								<td class='text-center'>".$text_no_data."</td>
+								<td class='text-center'>".$text_no_data."</td>
+							</tr>"; } else {?>
 							<?php foreach ($n_category as $table_c) { ?>
 								<tr>
 									<td class="text-center"><?php echo $table_c['ID'];?></td>
@@ -385,8 +399,7 @@
 									<td class="text-center"><?php echo "up";?></td>
 								</tr>
 							<?php } ?>
-							<?php
-							?>
+							<?php } ?>
 						</table>
 						</div>
 				</div>
