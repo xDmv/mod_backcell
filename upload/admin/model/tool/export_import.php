@@ -8027,6 +8027,7 @@ class ModelToolExportImport extends Model {
 		foreach ($query->rows as $result) {
 			$n_manufacture[] = $result;
 		}
+
 		return $n_manufacture;
 	}
 
@@ -8049,6 +8050,27 @@ class ModelToolExportImport extends Model {
 			return $n_category;
 		}
 
+		public function getNameManufacture () {
+			$name_manufacture = array();
+
+			$query = $this->db->query("SELECT distinct manufacturer_id, name FROM " . DB_PREFIX . "manufacturer_description ORDER BY manufacturer_id");
+			foreach ($query->rows as $result) {
+				$name_manufacture[] = $result;
+			}
+
+			return $name_manufacture;
+		}
+
+		public function getNameCategory () {
+			$name_category = array();
+
+			$query = $this->db->query("SELECT distinct category_id, name FROM " . DB_PREFIX . "category_description ORDER BY category_id");
+			foreach ($query->rows as $result) {
+				$name_category[] = $result;
+			}
+
+			return $name_category;
+		}
 
 // edit_prise end
 	public function getCountCustomer() {

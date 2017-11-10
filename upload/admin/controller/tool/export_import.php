@@ -374,9 +374,13 @@ class ControllerToolExportImport extends Controller {
 
 		$data['$table_m'] = array();
 		$data['$table_c'] = array();
+		$data['$manufacture_name'] = array();
+		$data['$category_name'] = array();
 
 		$data['n_manufacture'] = $this->model_tool_export_import->getNManufacture();
 		$data['n_category'] = $this->model_tool_export_import->getNCategory();
+		$data['name_manufacture'] = $this->model_tool_export_import->getNameManufacture();
+		$data['name_category'] = $this->model_tool_export_import->getNameCategory();
 
 		// edit_prise end
 		$data['min_product_id'] = $min_product_id;

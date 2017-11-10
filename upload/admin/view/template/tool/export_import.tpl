@@ -270,9 +270,9 @@
 									 <label class="col-sm-12"><?php echo $text_etap1m; ?></label>
 									 <div class="col-sm-5">
 									 <select class="form-control" name="timecell">
-
-											<option value="c 9-00 до 10-00">c 9-00 до 10-00</option>
-
+											<?php foreach ($name_manufacture as $manufacture_name){ ?>
+												<option <?php echo "value='".$manufacture_name['manufacturer_id']."'"; ?> > <?php echo $manufacture_name['name']; ?> </option>
+											<?php } ?>
 									 </select>
 									 </div>
 
@@ -341,9 +341,9 @@
 							 <label class="col-sm-12"><?php echo $text_etap1c; ?></label>
 							 <div class="col-sm-5">
 							 <select class="form-control" name="timecell">
-
-									<option value="c 9-00 до 10-00">c 9-00 до 10-00</option>
-
+								 <?php foreach ($name_category as $category_name){ ?>
+									 <option <?php echo "value='".$category_name['category_id']."'"; ?> > <?php echo $category_name['name']; ?> </option>
+								 <?php } ?>
 							 </select>
 							 </div>
 
