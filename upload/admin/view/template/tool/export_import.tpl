@@ -324,7 +324,7 @@
 											<td class="text-center"><?php echo $table_m['Name_category'];?></td>
 											<td class="text-center"><?php echo $table_m['Procent'];?></td>
 											<td class="text-center"><?php echo $table_m['Cheslo'];?></td>
-											<td class="text-center"><?php echo "del";?></td>
+											<td class="text-center"><a href="#" data-toggle="tooltip" title="" class="btn btn-danger manufacture-delete" data-original-title="Удалить без подтверждения"><i class="fa fa-trash-o"><input type="hidden" name="id" value="<?php echo $table_m['ID']; ?>"/></i></a></td>
 											<td class="text-center"><?php echo "up";?></td>
 										</tr>
 									<?php } ?>
@@ -407,7 +407,9 @@
 		</div>
 
 	</div>
+<script type="text/javascript"><!--
 
+//--></script>
 <script type="text/javascript"><!--
 
 function getNotifications() {
