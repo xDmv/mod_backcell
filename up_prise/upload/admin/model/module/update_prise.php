@@ -2,116 +2,83 @@
 
 class ModelModuleUpdateprise extends Model {
 
-	//Sample DB access - Get all customers
-	/*
-	function getCustomerData() {
-		$query = "SELECT * FROM " . DB_PREFIX . "customer";
-		$result = $this->db->query($query);
-		return $result->rows;
-	}
-	*/
-	public function getNManufacture () {
-		$n_manufacture = array();
-
+	public function Status0() {
 		$this->db->query("
-			CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "editprice_manufacturer (
-			ID Int(10) NOT NULL,
-			Name_category varchar(255) NOT NULL,
-			Procent decimal(15,2) NULL,
-			Cheslo decimal(15,2) NULL,
-			Date_insert varchar(19) NULL)
+			UPDATE " . DB_PREFIX . "product SET status = 0;
 		");
-
-		$query = $this->db->query("SELECT ID, Name_category, Procent, Cheslo FROM " . DB_PREFIX . "editprice_manufacturer ORDER BY id");
-		foreach ($query->rows as $result) {
-			$n_manufacture[] = $result;
-		}
-
-		return $n_manufacture;
+		return 'Status 0';
 	}
 
-		public function getNCategory () {
-			$n_category = array();
+	public function InsertNew($model,$sku,$price) {
+		$this->db->query("
+			Insert Into " . DB_PREFIX . "product set
+			model = '".$model."',
+			sku = '".$sku."',
+			price = '".$price."',
+			status = 1,
+			shipping = 1;
+		");
+		$this->db->query("
+			Insert Into " . DB_PREFIX . "product_description set
+			product_id = (Select max(product_id) From " . DB_PREFIX . "product),
+			language_id = 1,
+			name = '' ;
+		");
+		$this->db->query("
+			Insert Into " . DB_PREFIX . "product_to_store set
+			product_id = (Select max(product_id) From " . DB_PREFIX . "product),
+			store_id = 0;
+		");
+		return 'Insert new product';
+	}
 
+	public function Up0($model) {
+		$this->db->query("
+			UPDATE " . DB_PREFIX . "product SET
+			status = 1,
+			shipping = 1
+			Where model = '".$model."';
+		");
+		return 'Update 0';
+	}
+
+	public function UpNewprise($model,$price) {
+		$this->db->query("
+			UPDATE " . DB_PREFIX . "product SET
+			price = '".$price."',
+			status = 1,
+			shipping = 1
+			Where model = '".$model."';
+		");
+		return 'Update new price';
+	}
+	public function NManufacture() {
+		$id_manufacture = array();
+		$query = $this->db->query("Select id From " . DB_PREFIX . "editprice_manufacturer;");
+		foreach ($query->rows as $result) {
+			$id_manufacture[] = $result;
+		}
+		foreach ($id_manufacture->rows as $id) {
+			echo $id."<br>";
+		}
+		exit;
+		foreach ($id_manufacture->rows as $id) {
 			$this->db->query("
-				CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "editprice_category (
-				ID Int(10) NOT NULL,
-				Name_category varchar(255) NOT NULL,
-				Procent decimal(15,2) NULL,
-				Cheslo decimal(15,2) NULL,
-				Date_insert varchar(19) NULL)
+				Update " . DB_PREFIX . "product set
+				price = (price * (Select Procent From " . DB_PREFIX . "editprice_manufacturer where id = ".$id.") / 100 +
+				(Select Cheslo From " . DB_PREFIX . "editprice_manufacturer where id = ".$id.") + price)
+				Where manufacturer_id = ".$id.";
 			");
-
-			$query = $this->db->query("SELECT ID, Name_category, Procent, Cheslo FROM " . DB_PREFIX . "editprice_category ORDER BY id");
-			foreach ($query->rows as $result) {
-				$n_category[] = $result;
-			}
-			return $n_category;
 		}
 
-		public function getNameManufacture () {
-			$name_manufacture = array();
+		return 'Manufacture';
+	}
+	public function NCategory() {
+		$this->db->query("
 
-			$query = $this->db->query("SELECT distinct manufacturer_id, name FROM " . DB_PREFIX . "manufacturer_description ORDER BY manufacturer_id");
-			foreach ($query->rows as $result) {
-				$name_manufacture[] = $result;
-			}
+		");
+		return 'Category';
+	}
 
-			return $name_manufacture;
-		}
-
-		public function getNameCategory () {
-			$name_category = array();
-
-			$query = $this->db->query("SELECT distinct category_id, name FROM " . DB_PREFIX . "category_description ORDER BY category_id");
-			foreach ($query->rows as $result) {
-				$name_category[] = $result;
-			}
-
-			return $name_category;
-		}
-
-		public function Add_insert_m ($id, $procent, $cheslo) {
-			$data = date("d-m-Y H:i:s");
-
-			$this->db->query("INSERT INTO " . DB_PREFIX . "editprice_manufacturer (`ID`, `Name_category`, `Procent`, `Cheslo`, `Date_insert`) VALUES
-			('".$id."', (Select distinct name From oc_manufacturer_description Where manufacturer_id = '".$id."'),'".$procent."','".$cheslo."','".$data."')");
-
-			$this->db->query(" Update " . DB_PREFIX . "product set
-			price = (price * (Select Procent From " . DB_PREFIX . "editprice_manufacturer where id = ".$id.") / 100 +
-			(Select Cheslo From oc_editprice_manufacturer where id = ".$id.") + price)
-			Where manufacturer_id = ".$id.";");
-
-			return 'addM';
-		}
-
-		public function Add_insert_c ($id, $procent, $cheslo) {
-			$data = date("d-m-Y H:i:s");
-
-			$this->db->query("INSERT INTO oc_editprice_category (`ID`, `Name_category`, `Procent`, `Cheslo`, `Date_insert`) VALUES
-			('".$id."', (Select name From " . DB_PREFIX . "category_description Where category_id = '".$id."'),'".$procent."','".$cheslo."','".$data."');");
-
-			$this->db->query("Update " . DB_PREFIX . "product, " . DB_PREFIX . "product_to_category Set
-			" . DB_PREFIX . "product.price = " . DB_PREFIX . "product.price * (Select Procent From " . DB_PREFIX . "editprice_category where id = ".$id.") / 100
-			+ (Select Cheslo From oc_editprice_category where id = ".$id.") + " . DB_PREFIX . "product.price
-			Where " . DB_PREFIX . "product.product_id = " . DB_PREFIX . "product_to_category.product_id and " . DB_PREFIX . "product_to_category.category_id = ".$id.";");
-
-			return 'addC';
-		}
-
-		public function delManufacture ($id){
-			$this->db->query("	UPDATE " . DB_PREFIX . "product
-				SET price = (price - (Select Cheslo From oc_editprice_manufacturer where id = ".$id."))
-				/(1+(Select Procent From oc_editprice_manufacturer where id = ".$id.")/100)
-				Where manufacturer_id = ".$id.";");
-			$this->db->query("DELETE FROM " . DB_PREFIX . "editprice_manufacturer WHERE ID = ".$id);
-		return 'deletedM';
-		}
-
-		public function delCategory ($id){
-			$this->db->query("DELETE FROM " . DB_PREFIX . "editprice_category WHERE ID = ".$id);
-		return 'deletedC';
-		}
 }
-
 ?>
