@@ -25,22 +25,22 @@
       </div>
       <div class="panel-body">
         <div align="center"  id='loadBar'></div>
-        <div class="text-primary"><?php echo $text_etap0; ?></div>
-        <form action="#" method="post" enctype="multipart/form-data" id="up_prise" class="form-horizontal">
-          <div class="form-group">
-            <label for="exampleInputFile" class="text-primary"><?php echo $text_etap1m; ?></label>
+        <div class="text-default"><p><strong><?php echo $text_etap0; ?></strong></p></div>
+        <div class="form-group">
+          <form action="#" method="post" enctype="multipart/form-data" id="up_prise" class="form-horizontal">
+            <label for="exampleInputFile" class="text-default"><p><?php echo $text_etap1m; ?></p></label>
             <input type="file" class="form-control-file" id="InputFile" aria-describedby="fileHelp">
-          </div>
-        </form>
+          </form>
+        </div>
         <input type="submit" class="btn btn-primary" id="up" value="Загрузить"><br>
         <div class="form-group">
-          <label for="exampleInputFile" class="text-primary"><?php echo $text_etap2; ?></label>
-<span>
+          <label for="exampleInputFile" class="text-default"><p><?php echo $text_etap2; ?></p></label>
+          <div class="form-group">
               <button type="button" class="btn btn-primary" id="button_m"><?php echo $button_m; ?></button>
-</span>
-<span>
+            </div>
+            <div class="form-group">
               <button type="button" class="btn btn-primary" id="button_c"><?php echo $button_c; ?></button>
-</span>
+            </div>
         </div>
 
           <script type="text/javascript"><!--

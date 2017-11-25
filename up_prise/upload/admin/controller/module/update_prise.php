@@ -14,10 +14,10 @@ class ControllerModuleUpdateprise extends Controller {
 			$this->session->data['success'] = $this->language->get('text_success');
 			$data['success'] = $this->session->data['success'] ;
 
-		//	$this->response->redirect($this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'));
+			$this->response->redirect($this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 		// определяем переменные
-		//$data['mod_id'] = $this->request->get['module_id'];
+
 		$data['heading_title'] = $this->language->get('heading_title');
 		$data['text_edit'] = $this->language->get('text_edit');
 		$data['text_enabled'] = $this->language->get('text_enabled');
@@ -63,15 +63,6 @@ class ControllerModuleUpdateprise extends Controller {
     $data['text_no_data'] = $this->language->get( 'text_no_data' );
 		$data['del_help'] = $this->language->get('del_help');
 
-		$data['$m_del'] = array();
-		$data['$temp_m'] = array();
-		$data['$c_del'] = array();
-		$data['$temp_c'] = array();
-		$data['$table_m'] = array();
-		$data['$table_c'] = array();
-		$data['$manufacture_name'] = array();
-		$data['$category_name'] = array();
-
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
 		} else {
@@ -100,15 +91,6 @@ class ControllerModuleUpdateprise extends Controller {
 		} else {
 			$data['update_prise_status'] = $this->config->get('update_prise_status');
 		}
-		// получение коментов
-
-		$data['commets'] = array();
-		$this->load->model('module/update_prise');
-
-		$data['n_manufacture'] = $this->model_module_update_prise->getNManufacture();
-		$data['n_category'] = $this->model_module_update_prise->getNCategory();
-		$data['name_manufacture'] = $this->model_module_update_prise->getNameManufacture();
-		$data['name_category'] = $this->model_module_update_prise->getNameCategory();
 
 		// подключаем с админской части шапки колонки слева и футера
 		$data['header'] = $this->load->controller('common/header');
