@@ -49,6 +49,8 @@ class ControllerModuleUpdateprise extends Controller {
 		$data['button_prim'] = $this->language->get( 'button_prim' );
 		$data['button_del'] = $this->language->get( 'button_del' );
 		$data['button_red'] = $this->language->get( 'button_red' );
+		$data['button_m'] = $this->language->get( 'button_m' );
+		$data['button_c'] = $this->language->get( 'button_c' );
 
 		$data['text_etap0'] = $this->language->get( 'text_etap0' );
 		$data['text_etap1m'] = $this->language->get( 'text_etap1m' );
@@ -123,9 +125,23 @@ class ControllerModuleUpdateprise extends Controller {
 		return !$this->error;
 	}
 
-	public function deleteManufacture(){
+	public function addUpload(){
+		$text = ($this->request->post['InputFile']) ? $this->request->post['InputFile'] : 0;
+
+		if($_FILES["filename"]["size"] > 1024*3*1024)
+    {
+      echo ("Размер файла превышает три мегабайта");
+    }
+		else{
+			echo (" file add... ");
+			echo $_FILES["filename"];
+			echo $text;
+		}
+		echo $text;
+		exit;
+/*
 		// получаем значения
-		$text = ($this->request->post['id_m']) ? $this->request->post['id_m'] : 0;
+		$text = ($this->request->post['InputFile']) ? $this->request->post['InputFile'] : 0;
 		// массив вывода
 		$json = array();
 		if (!$text) {
@@ -134,6 +150,7 @@ class ControllerModuleUpdateprise extends Controller {
 			$this->load->model('comments/comments');
 			$json['manufacture'] = $this->model_comments_comments->delManufacture($text);
 		}
+*/
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
