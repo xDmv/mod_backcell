@@ -24,7 +24,7 @@
         <h3 class="panel-title"><i class="fa fa-cogs"></i> <?php echo $heading_title; ?></h3>
       </div>
       <div class="panel-body">
-        <div class="panel panel-default coments-wrap">
+        
           <div align="center"  id='loadBar'></div>
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-manufacture" data-toggle="tab"><?php echo $tab_manufacture; ?></a></li>
@@ -311,9 +311,9 @@
           });
 
         });
-        //--></script>      
+        //--></script>
 
-      </div>
+
     </div>
   </div>
 </div>
