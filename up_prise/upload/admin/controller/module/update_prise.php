@@ -137,6 +137,16 @@ class ControllerModuleUpdateprise extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
+	public function ManufactureUp(){
+
+		// массив вывода
+		$json = array();
+		$json['manufacture'] = $this->model_update_prise->NManufacture();
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+
+	}
+
 	public function deleteCategory(){
 		// получаем значения
 		$text = ($this->request->post['id_c']) ? $this->request->post['id_c'] : 0;

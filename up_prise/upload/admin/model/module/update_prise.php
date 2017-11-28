@@ -52,27 +52,17 @@ class ModelModuleUpdateprise extends Model {
 		");
 		return 'Update new price';
 	}
-	public function NManufacture() {
-		$id_manufacture = array();
-		$query = $this->db->query("Select id From " . DB_PREFIX . "editprice_manufacturer;");
-		foreach ($query->rows as $result) {
-			$id_manufacture[] = $result;
-		}
-		foreach ($id_manufacture->rows as $id) {
-			echo $id."<br>";
-		}
-		exit;
-		foreach ($id_manufacture->rows as $id) {
-			$this->db->query("
-				Update " . DB_PREFIX . "product set
-				price = (price * (Select Procent From " . DB_PREFIX . "editprice_manufacturer where id = ".$id.") / 100 +
-				(Select Cheslo From " . DB_PREFIX . "editprice_manufacturer where id = ".$id.") + price)
-				Where manufacturer_id = ".$id.";
-			");
-		}
 
-		return 'Manufacture';
+	public function NManufacture() {
+		$this->db->query("
+			Update " . DB_PREFIX . "product, " . DB_PREFIX . "editprice_manufacturer set
+			price = (price * (Select Procent From " . DB_PREFIX . "editprice_manufacturer where id = " . DB_PREFIX . "product.manufacturer_id) / 100 +
+			(Select Cheslo From " . DB_PREFIX . "editprice_manufacturer where id = " . DB_PREFIX . "product.manufacturer_id) + price)
+			Where " . DB_PREFIX . "product.manufacturer_id = " . DB_PREFIX . "editprice_manufacturer.id
+		");
+		return 'Manufacture Up';
 	}
+
 	public function NCategory() {
 		$this->db->query("
 

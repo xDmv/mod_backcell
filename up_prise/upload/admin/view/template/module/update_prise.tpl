@@ -36,10 +36,11 @@
         <div class="form-group">
           <label for="exampleInputFile" class="text-default"><p><?php echo $text_etap2; ?></p></label>
           <div class="form-group">
-              <button type="button" class="btn btn-primary" id="button_m"><?php echo $button_m; ?></button>
+              <button type="button" class="btn btn-primary" name="button_m" id="button_m"><?php echo $button_m; ?></button>
             </div>
+
             <div class="form-group">
-              <button type="button" class="btn btn-primary" id="button_c"><?php echo $button_c; ?></button>
+              <button type="button" class="btn btn-primary" name="button_c" id="button_c"><?php echo $button_c; ?></button>
             </div>
         </div>
 
@@ -69,13 +70,14 @@
             return false;
         });
 
-        $('#send_m').click(function(){
+        $('#button_m').click(function(){
         var regVr22 = "<div><img style='margin-bottom:-4px;' src='http://oilplus.bestwatch.in.ua/catalog/view/theme/oilplus/image/load.gif' alt='Отправка...' width='16' height='16'><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
         $("#loadBar").html(regVr22).show();
+        gems = $(this).find('button');
           $.ajax({
-            url: 'index.php?route=module/comments/addManufacture&token=<?php echo $token; ?>',
+            url: 'index.php?route=module/update_prise/ManufactureUp&token=<?php echo $token; ?>',
             type: 'post',
-            data: $('form#form_manufacture').serialize(),
+            data: gems,
             dataType: 'json',
             beforeSend: function() {
               console.log('отослано');
@@ -93,31 +95,6 @@
           });
           return false;
         });
-
-        $('#send_c').click(function(){
-          var regVr22 = "<div><img style='margin-bottom:-4px;' src='http://oilplus.bestwatch.in.ua/catalog/view/theme/oilplus/image/load.gif' alt='Отправка...' width='16' height='16'><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
-          $("#loadBar").html(regVr22).show();
-            $.ajax({
-              url: 'index.php?route=module/comments/addCategory&token=<?php echo $token; ?>',
-              type: 'post',
-              data: $('form#form_category').serialize(),
-              dataType: 'json',
-              beforeSend: function() {
-                console.log('отослано');
-                //console.log(json);
-              },
-              error: function (_e) {
-                console.log(_e);
-                //console.log(json);
-              },
-              success: function(response) {
-                console.log('обработано');
-                console.log(response);
-                location.reload();
-              }
-            });
-            return false;
-          });
 
         });
         //--></script>
