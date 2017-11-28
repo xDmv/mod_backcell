@@ -72,12 +72,38 @@
 
         $('#button_m').click(function(){
         var regVr22 = "<div><img style='margin-bottom:-4px;' src='http://oilplus.bestwatch.in.ua/catalog/view/theme/oilplus/image/load.gif' alt='Отправка...' width='16' height='16'><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
+        gems = "$(this).find('button')";
         $("#loadBar").html(regVr22).show();
-        gems = $(this).find('button');
           $.ajax({
             url: 'index.php?route=module/update_prise/ManufactureUp&token=<?php echo $token; ?>',
             type: 'post',
-            data: gems,
+            //data: gems,
+            dataType: 'json',
+            beforeSend: function() {
+              console.log('отослано');
+              //console.log(json);
+            },
+            error: function (_e) {
+              console.log(_e);
+              //console.log(json);
+            },
+            success: function(response) {
+              console.log('обработано');
+              console.log(response);
+              location.reload();
+            }
+          });
+          return false;
+        });
+
+        $('#button_c').click(function(){
+        var regVr22 = "<div><img style='margin-bottom:-4px;' src='http://oilplus.bestwatch.in.ua/catalog/view/theme/oilplus/image/load.gif' alt='Отправка...' width='16' height='16'><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
+        gems = "$(this).find('button')";
+        $("#loadBar").html(regVr22).show();
+          $.ajax({
+            url: 'index.php?route=module/update_prise/CategoryUp&token=<?php echo $token; ?>',
+            type: 'post',
+            //data: gems,
             dataType: 'json',
             beforeSend: function() {
               console.log('отослано');

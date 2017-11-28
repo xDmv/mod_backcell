@@ -139,9 +139,21 @@ class ControllerModuleUpdateprise extends Controller {
 
 	public function ManufactureUp(){
 
-		// массив вывода
+		$this->load->model('module/update_prise');
 		$json = array();
-		$json['manufacture'] = $this->model_update_prise->NManufacture();
+		$json['manufacture'] = $this->model_module_update_prise->NManufacture();
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+
+	}
+
+	public function CategoryUp(){
+
+		$this->load->model('module/update_prise');
+		$json = array();
+		$json['Category'] = $this->model_module_update_prise->NCategory();
+
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 
@@ -156,7 +168,7 @@ class ControllerModuleUpdateprise extends Controller {
 			$json['error'] = 'no id';
 		} else {
 			$this->load->model('comments/comments');
-			$json['manufacture'] = $this->model_comments_comments->delCategory($text);
+			$json['manufacture'] = $this->model_module_update_prise->delCategory($text);
 		}
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
@@ -170,7 +182,7 @@ class ControllerModuleUpdateprise extends Controller {
 		// массив вывода
 		$json = array();
 		$this->load->model('comments/comments');
-		$json['manufacture-add'] = $this->model_comments_comments->Add_insert_m($id, $procent, $cheslo);
+		$json['manufacture-add'] = $this->model_module_update_prise->Add_insert_m($id, $procent, $cheslo);
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
@@ -183,7 +195,7 @@ class ControllerModuleUpdateprise extends Controller {
 		// массив вывода
 		$json = array();
 		$this->load->model('comments/comments');
-		$json['manufacture-add'] = $this->model_comments_comments->Add_insert_c($id, $procent, $cheslo);
+		$json['manufacture-add'] = $this->model_module_update_prise->Add_insert_c($id, $procent, $cheslo);
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
