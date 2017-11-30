@@ -18,57 +18,57 @@ class ControllerModuleMarkups extends Controller {
 		}
 		// определяем переменные
 		//$data['mod_id'] = $this->request->get['module_id'];
-		$data['heading_title'] = $this->language->get('heading_title');
-		$data['text_edit'] = $this->language->get('text_edit');
-		$data['text_enabled'] = $this->language->get('text_enabled');
-		$data['text_disabled'] = $this->language->get('text_disabled');
-		$data['table_image'] = $this->language->get('table_image');
-		$data['table_name'] = $this->language->get('table_name');
-		$data['table_text'] = $this->language->get('table_text');
-		$data['button_save'] = $this->language->get('button_save');
-		$data['button_cancel'] = $this->language->get('button_cancel');
-		$data['table_header'] = $this->language->get('table_header');
-		$data['table_edit'] = $this->language->get('table_edit');
-		$data['table_delete'] = $this->language->get('table_delete');
-		$data['table_id'] = $this->language->get('table_id');
-		$data['token'] = $this->session->data['token'];
-		$data['title_add'] = $this->language->get('title_add');
+		$data['heading_title']  	= $this->language->get('heading_title');
+		$data['text_edit'] 				= $this->language->get('text_edit');
+		$data['text_enabled'] 		= $this->language->get('text_enabled');
+		$data['text_disabled'] 		= $this->language->get('text_disabled');
+		$data['table_image'] 			= $this->language->get('table_image');
+		$data['table_name'] 			= $this->language->get('table_name');
+		$data['table_text'] 			= $this->language->get('table_text');
+		$data['button_save'] 			= $this->language->get('button_save');
+		$data['button_cancel'] 		= $this->language->get('button_cancel');
+		$data['table_header'] 		= $this->language->get('table_header');
+		$data['table_edit'] 			= $this->language->get('table_edit');
+		$data['table_delete'] 		= $this->language->get('table_delete');
+		$data['table_id'] 				= $this->language->get('table_id');
+		$data['token'] 						= $this->session->data['token'];
+		$data['title_add'] 				= $this->language->get('title_add');
 
-		$data['table_header'] = $this->language->get( 'table_header' );
-		$data['table_id'] = $this->language->get( 'table_id' );
-		$data['table_name'] = $this->language->get( 'table_name' );
-		$data['table_procent'] = $this->language->get( 'table_procent' );
-		$data['table_cheslo'] = $this->language->get( 'table_cheslo' );
-		$data['table_del'] = $this->language->get( 'table_del' );
-		$data['table_up'] = $this->language->get( 'table_up' );
-		$data['table_prin'] = $this->language->get( 'table_prin' );
+		$data['table_header'] 		= $this->language->get( 'table_header' );
+		$data['table_id'] 				= $this->language->get( 'table_id' );
+		$data['table_name'] 			= $this->language->get( 'table_name' );
+		$data['table_procent'] 		= $this->language->get( 'table_procent' );
+		$data['table_cheslo'] 		= $this->language->get( 'table_cheslo' );
+		$data['table_del'] 				= $this->language->get( 'table_del' );
+		$data['table_up'] 				= $this->language->get( 'table_up' );
+		$data['table_prin'] 			= $this->language->get( 'table_prin' );
 
-		$data['tab_manufacture'] = $this->language->get( 'tab_manufacture' );
-		$data['tab_category'] = $this->language->get( 'tab_category' );
+		$data['tab_manufacture'] 	= $this->language->get( 'tab_manufacture' );
+		$data['tab_category'] 		= $this->language->get( 'tab_category' );
 
-		$data['button_prim'] = $this->language->get( 'button_prim' );
-		$data['button_del'] = $this->language->get( 'button_del' );
-		$data['button_red'] = $this->language->get( 'button_red' );
+		$data['button_prim'] 			= $this->language->get( 'button_prim' );
+		$data['button_del'] 			= $this->language->get( 'button_del' );
+		$data['button_red'] 			= $this->language->get( 'button_red' );
 
-		$data['text_etap0'] = $this->language->get( 'text_etap0' );
-		$data['text_etap1m'] = $this->language->get( 'text_etap1m' );
-		$data['text_etap1c'] = $this->language->get( 'text_etap1c' );
-		$data['text_etap2'] = $this->language->get( 'text_etap2' );
-		$data['text_etap3'] = $this->language->get( 'text_etap3' );
-		$data['text_cheslo'] = $this->language->get( 'text_cheslo' );
-		$data['text_procent'] = $this->language->get( 'text_procent' );
-		$data['text_procent'] = $this->language->get( 'text_procent' );
-    $data['text_no_data'] = $this->language->get( 'text_no_data' );
-		$data['del_help'] = $this->language->get('del_help');
+		$data['text_etap0'] 			= $this->language->get( 'text_etap0' );
+		$data['text_etap1m'] 			= $this->language->get( 'text_etap1m' );
+		$data['text_etap1c'] 			= $this->language->get( 'text_etap1c' );
+		$data['text_etap2'] 			= $this->language->get( 'text_etap2' );
+		$data['text_etap3'] 			= $this->language->get( 'text_etap3' );
+		$data['text_cheslo'] 			= $this->language->get( 'text_cheslo' );
+		$data['text_procent'] 		= $this->language->get( 'text_procent' );
+		$data['text_procent'] 		= $this->language->get( 'text_procent' );
+    $data['text_no_data'] 		= $this->language->get( 'text_no_data' );
+		$data['del_help'] 				= $this->language->get('del_help');
 
-		$data['$m_del'] = array();
-		$data['$temp_m'] = array();
-		$data['$c_del'] = array();
-		$data['$temp_c'] = array();
-		$data['$table_m'] = array();
-		$data['$table_c'] = array();
-		$data['$manufacture_name'] = array();
-		$data['$category_name'] = array();
+		$data['$m_del'] 						= array();
+		$data['$temp_m'] 						= array();
+		$data['$c_del'] 						= array();
+		$data['$temp_c'] 						= array();
+		$data['$table_m'] 					= array();
+		$data['$table_c'] 					= array();
+		$data['$manufacture_name'] 	= array();
+		$data['$category_name'] 		= array();
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -123,17 +123,19 @@ class ControllerModuleMarkups extends Controller {
 
 		return !$this->error;
 	}
-	
+
 	public function deleteManufacture(){
 		// получаем значения
 		$text = ($this->request->post['id_m']) ? $this->request->post['id_m'] : 0;
+		print_r($text);
+		exit;
 		// массив вывода
 		$json = array();
 		if (!$text) {
 			$json['error'] = 'no id';
 		} else {
-			$this->load->model('comments/comments');
-			$json['manufacture'] = $this->model_comments_comments->delManufacture($text);
+			$this->load->model('module/mark_ups');
+			$json['manufacture'] = $this->model_module_mark_ups->delManufacture($text);
 		}
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
@@ -147,8 +149,8 @@ class ControllerModuleMarkups extends Controller {
 		if (!$text) {
 			$json['error'] = 'no id';
 		} else {
-			$this->load->model('comments/comments');
-			$json['manufacture'] = $this->model_comments_comments->delCategory($text);
+			$this->load->model('module/mark_ups');
+			$json['manufacture'] = $this->model_module_mark_ups->delCategory($text);
 		}
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
@@ -161,8 +163,8 @@ class ControllerModuleMarkups extends Controller {
 		$cheslo = isset($this->request->post['cheslo']) ? $this->request->post['cheslo']:0;
 		// массив вывода
 		$json = array();
-		$this->load->model('comments/comments');
-		$json['manufacture-add'] = $this->model_comments_comments->Add_insert_m($id, $procent, $cheslo);
+		$this->load->model('module/mark_ups');
+		$json['manufacture-add'] = $this->model_module_mark_ups->Add_insert_m($id, $procent, $cheslo);
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
@@ -174,8 +176,8 @@ class ControllerModuleMarkups extends Controller {
 		$cheslo = isset($this->request->post['cheslo']) ? $this->request->post['cheslo']:0;
 		// массив вывода
 		$json = array();
-		$this->load->model('comments/comments');
-		$json['manufacture-add'] = $this->model_comments_comments->Add_insert_c($id, $procent, $cheslo);
+		$this->load->model('module/mark_ups');
+		$json['manufacture-add'] = $this->model_module_mark_ups->Add_insert_c($id, $procent, $cheslo);
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}

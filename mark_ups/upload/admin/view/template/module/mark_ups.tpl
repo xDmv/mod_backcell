@@ -24,7 +24,7 @@
         <h3 class="panel-title"><i class="fa fa-cogs"></i> <?php echo $heading_title; ?></h3>
       </div>
       <div class="panel-body">
-        
+
           <div align="center"  id='loadBar'></div>
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-manufacture" data-toggle="tab"><?php echo $tab_manufacture; ?></a></li>
@@ -223,7 +223,7 @@
           dataType: 'json',
           beforeSend: function() {
             console.log('отослано');
-            console.log(DelM);
+            console.log(json);
           },
           error: function (json) {
             console.log(json);
