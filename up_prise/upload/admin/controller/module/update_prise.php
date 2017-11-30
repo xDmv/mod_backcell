@@ -62,6 +62,7 @@ class ControllerModuleUpdateprise extends Controller {
 		$data['text_procent'] = $this->language->get( 'text_procent' );
     $data['text_no_data'] = $this->language->get( 'text_no_data' );
 		$data['del_help'] = $this->language->get('del_help');
+		$data['download'] = $this->language->get('download');
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -108,8 +109,18 @@ class ControllerModuleUpdateprise extends Controller {
 	}
 
 	public function addUpload(){
-		$text = ($this->request->post['InputFile']) ? $this->request->post['InputFile'] : 0;
+		$json = array();
+		print_r("controller +");
+		exit;
+		$this->load->model('module/update_prise');
+		$oldprise = array();
+		$newprice = array();
 
+		$oldprise = $this->model_module_update_prise->Oldprice();
+		print_r($oldprise);
+	// 	print_r($text);
+		exit;
+/*
 		if($_FILES["filename"]["size"] > 1024*3*1024)
     {
       echo ("Размер файла превышает три мегабайта");
@@ -119,9 +130,7 @@ class ControllerModuleUpdateprise extends Controller {
 			echo $_FILES["filename"];
 			echo $text;
 		}
-		echo $text;
-		exit;
-/*
+
 		// получаем значения
 		$text = ($this->request->post['InputFile']) ? $this->request->post['InputFile'] : 0;
 		// массив вывода
@@ -159,45 +168,5 @@ class ControllerModuleUpdateprise extends Controller {
 
 	}
 
-	public function deleteCategory(){
-		// получаем значения
-		$text = ($this->request->post['id_c']) ? $this->request->post['id_c'] : 0;
-		// массив вывода
-		$json = array();
-		if (!$text) {
-			$json['error'] = 'no id';
-		} else {
-			$this->load->model('comments/comments');
-			$json['manufacture'] = $this->model_module_update_prise->delCategory($text);
-		}
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
-
-	public function addManufacture(){
-		// получаем значения
-		$id = isset($this->request->post['manufacturer_id']) ? $this->request->post['manufacturer_id']:8;
-		$procent = isset($this->request->post['procent']) ? $this->request->post['procent']:0;
-		$cheslo = isset($this->request->post['cheslo']) ? $this->request->post['cheslo']:0;
-		// массив вывода
-		$json = array();
-		$this->load->model('comments/comments');
-		$json['manufacture-add'] = $this->model_module_update_prise->Add_insert_m($id, $procent, $cheslo);
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
-
-	public function addCategory(){
-		// получаем значения
-		$id = isset($this->request->post['category_id']) ? $this->request->post['category_id']:28;
-		$procent = isset($this->request->post['procent']) ? $this->request->post['procent']:0;
-		$cheslo = isset($this->request->post['cheslo']) ? $this->request->post['cheslo']:0;
-		// массив вывода
-		$json = array();
-		$this->load->model('comments/comments');
-		$json['manufacture-add'] = $this->model_module_update_prise->Add_insert_c($id, $procent, $cheslo);
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
 
 }

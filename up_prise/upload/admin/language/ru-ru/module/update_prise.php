@@ -5,14 +5,14 @@ $_['text_module']      = 'Modules';
 $_['text_total']      = 'Order Totals';
 $_['text_payment']      = 'Payments';
 $_['text_shipping']      = 'Shipping';
-$_['text_feed']      = 'Feeds';
+$_['text_feed']        = 'Feeds';
 $_['text_success']     = 'Success: You have modified module Y!';
 
-
+$_['download']                              = 'Загрузка';
 // Error
-$_['error_permission'] = 'Warning: You do not have permission to modify module Y!';
+$_['error_permission']                      = 'Warning: You do not have permission to modify module Y!';
 // Heading
-$_['heading_title']    = 'Загрузка прайса';
+$_['heading_title']                         = 'Загрузка прайса';
 
 // edit_prise start
 $_['tab_manufacture']                       = 'Наценка по производителям';

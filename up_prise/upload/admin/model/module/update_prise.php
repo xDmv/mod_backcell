@@ -1,6 +1,16 @@
 <?php
 
 class ModelModuleUpdateprise extends Model {
+	public function Oldprice() {
+		$oldprice = array();
+		$query = $this->db->query("
+			Select model, price From " . DB_PREFIX . "product ;
+		");
+		foreach ($query->rows as $result) {
+			$oldprice[] = $result;
+		}
+		return $oldprice;
+	}
 
 	public function Status0() {
 		$this->db->query("
@@ -9,11 +19,11 @@ class ModelModuleUpdateprise extends Model {
 		return 'Status 0';
 	}
 
-	public function InsertNew($model,$sku,$price) {
+	public function InsertNew($model,$price) {
 		$this->db->query("
 			Insert Into " . DB_PREFIX . "product set
 			model = '".$model."',
-			sku = '".$sku."',
+			sku = '".$model."',
 			price = '".$price."',
 			status = 1,
 			shipping = 1;
@@ -84,23 +94,7 @@ class ModelModuleUpdateprise extends Model {
 					Where " . DB_PREFIX . "product.product_id = " . DB_PREFIX . "product_to_category.product_id and " . DB_PREFIX . "product_to_category.category_id = ".$val.";
 				");
 			}
-			/*
-			print_r("
-			Update " . DB_PREFIX . "product, " . DB_PREFIX . "product_to_category Set
-			" . DB_PREFIX . "product.price = " . DB_PREFIX . "product.price * (Select Procent From " . DB_PREFIX . "editprice_category where id = ".$result.") / 100
-			+ (Select Cheslo From " . DB_PREFIX . "editprice_category where id = ".$result.") + " . DB_PREFIX . "product.price
-			Where " . DB_PREFIX . "product.product_id = " . DB_PREFIX . "product_to_category.product_id and " . DB_PREFIX . "product_to_category.category_id = ".$result.";
-			");
-			/*
-		$this->db->query("
-			Update " . DB_PREFIX . "product, " . DB_PREFIX . "product_to_category Set
-			" . DB_PREFIX . "product.price = " . DB_PREFIX . "product.price * (Select Procent From " . DB_PREFIX . "editprice_category where id = ".$result.") / 100
-			+ (Select Cheslo From " . DB_PREFIX . "editprice_category where id = ".$result.") + " . DB_PREFIX . "product.price
-			Where " . DB_PREFIX . "product.product_id = " . DB_PREFIX . "product_to_category.product_id and " . DB_PREFIX . "product_to_category.category_id = ".$result.";
-		");
-		*/
 		}
-
 		return 'Category Up';
 	}
 
