@@ -85,14 +85,15 @@ class ControllerModuleUpdateprise extends Controller {
 		// кнопки
 
 		$data['action'] = $this->url->link('module/update_prise', 'token=' . $this->session->data['token'], 'SSL');
-
+		$data['cancel'] = $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], $this->ssl);
+/*
 		$data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 		if (isset($this->request->post['update_prise_status'])) {
 			$data['update_prise_status'] = $this->request->post['update_prise_status'];
 		} else {
 			$data['update_prise_status'] = $this->config->get('update_prise_status');
 		}
-
+*/
 		// подключаем с админской части шапки колонки слева и футера
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
@@ -110,15 +111,19 @@ class ControllerModuleUpdateprise extends Controller {
 
 	public function addUpload(){
 		$json = array();
-		print_r("controller +");
-		exit;
+
 		$this->load->model('module/update_prise');
 		$oldprise = array();
 		$newprice = array();
 
 		$oldprise = $this->model_module_update_prise->Oldprice();
-		print_r($oldprise);
-	// 	print_r($text);
+
+		// $filename = basename(html_entity_decode($this->request->files['filename']['name'], ENT_QUOTES, 'UTF-8'));
+		// print_r($filename);
+		print_r("controller +|+|-");
+	//	if (!empty($this->request->files['file']['name']){
+			print_r($this->request->files['file']);
+	//	}
 		exit;
 /*
 		if($_FILES["filename"]["size"] > 1024*3*1024)
