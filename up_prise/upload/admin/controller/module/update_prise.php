@@ -110,55 +110,22 @@ class ControllerModuleUpdateprise extends Controller {
 	}
 
 	public function addUpload(){
-		$json = array();
+		$data = array();
+		$data[0] = "заходим в процедуру";
 
-		$this->load->model('module/update_prise');
-		$oldprise = array();
-		$newprice = array();
-
-		$oldprise = $this->model_module_update_prise->Oldprice();
-
-		// $filename = basename(html_entity_decode($this->request->files['filename']['name'], ENT_QUOTES, 'UTF-8'));
-		// print_r($filename);
-		print_r("controller +|+|-");
-	//	if (!empty($this->request->files['file']['name']){
-			print_r($this->request->files['file']);
-	//	}
-		exit;
-/*
-		if($_FILES["filename"]["size"] > 1024*3*1024)
-    {
-      echo ("Размер файла превышает три мегабайта");
-    }
-		else{
-			echo (" file add... ");
-			echo $_FILES["filename"];
-			echo $text;
-		}
-
-		// получаем значения
-		$text = ($this->request->post['InputFile']) ? $this->request->post['InputFile'] : 0;
-		// массив вывода
-		$json = array();
-		if (!$text) {
-			$json['error'] = 'no id';
-		} else {
-			$this->load->model('comments/comments');
-			$json['manufacture'] = $this->model_comments_comments->delManufacture($text);
-		}
-*/
 		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
+		$this->response->setOutput(json_encode($data));
+
 	}
 
 	public function ManufactureUp(){
 
 		$this->load->model('module/update_prise');
 		$json = array();
-		$json['manufacture'] = $this->model_module_update_prise->NManufacture();
+		$json['Manufacture'] = $this->model_module_update_prise->NManufacture();
 
 		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
+		$this->response->setOutput(json_encode($data));
 
 	}
 

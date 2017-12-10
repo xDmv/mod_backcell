@@ -64,7 +64,6 @@ class ModelModuleUpdateprise extends Model {
 	}
 
 	public function NManufacture() {
-		// print_r("ManufactureUp"); up
 
 		$this->db->query("
 			Update " . DB_PREFIX . "product, " . DB_PREFIX . "editprice_manufacturer set

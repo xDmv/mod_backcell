@@ -98,6 +98,7 @@
 
       })(jQuery)
         $(document).ready(function() {
+
           /*
           $('#my_form').on('submit', function(e){
             e.preventDefault();
