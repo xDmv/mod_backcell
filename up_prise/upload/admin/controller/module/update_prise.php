@@ -27,6 +27,7 @@ class ControllerModuleUpdateprise extends Controller {
 		$data['table_text'] = $this->language->get('table_text');
 		$data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');
+		$data['button_back'] = $this->language->get('button_back');
 		$data['table_header'] = $this->language->get('table_header');
 		$data['table_edit'] = $this->language->get('table_edit');
 		$data['table_delete'] = $this->language->get('table_delete');
@@ -125,7 +126,7 @@ class ControllerModuleUpdateprise extends Controller {
 		$json['Manufacture'] = $this->model_module_update_prise->NManufacture();
 
 		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($data));
+		$this->response->setOutput(json_encode($json));
 
 	}
 

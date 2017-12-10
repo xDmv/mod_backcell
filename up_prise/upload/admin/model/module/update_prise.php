@@ -81,11 +81,8 @@ class ModelModuleUpdateprise extends Model {
 		foreach ($query->rows as $result) {
 			$id[] = $result;
 		}
-		// print_r($id);
-		// exit;
 		foreach ($id as $key => $result) {
 			foreach ($result as $key => $val){
-				//print_r($val);
 				$this->db->query("
 					Update " . DB_PREFIX . "product, " . DB_PREFIX . "product_to_category Set
 					" . DB_PREFIX . "product.price = " . DB_PREFIX . "product.price * (Select Procent From " . DB_PREFIX . "editprice_category where id = ".$val.") / 100
