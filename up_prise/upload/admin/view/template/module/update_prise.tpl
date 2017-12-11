@@ -46,11 +46,68 @@
               <button type="button" class="btn btn-primary" name="button_c" id="button_c"><?php echo $button_c; ?></button>
           </div>
         </div>
+<script type="text/javascript"><!--
 
-          <script type="text/javascript"><!--
+  var files;
+  $('input[type=file]').change(function(){
+    files = this.files;
+  });
+
+  $('#up').click(function(){
+
+    var data = new FormData();
+    $.each( files, function( key, value ){
+      data.append( key, value );
+    });
+
+    var regVr22 = "<div><img style='margin-bottom:-4px;' src='http://oilplus.bestwatch.in.ua/catalog/view/theme/oilplus/image/load.gif' alt='Отправка...' width='16' height='16'><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
+    if(typeof data != ''){
+      console.log('Yes');
+    }else{
+      $("#loadBar").html(regVr22).show();
+    }
+    $.ajax({
+  		url: 'index.php?route=module/comments/addUpload&token=<?php echo $token; ?>?uploadfiles',
+  		type: 'POST',
+  		data: data,
+  		cache: false,
+  		dataType: 'json',
+  		processData: false, // Не обрабатываем файлы (Don't process the files)
+  		contentType: false, // Так jQuery скажет серверу что это строковой запрос
+      beforeSend: function() {
+        console.log('отослано');        
+      },
+  		success: function( respond, textStatus, jqXHR ){
+  			// Если все ОК
+  			if( typeof respond.error === 'undefined' ){
+  				// Файлы успешно загружены, делаем что нибудь здесь
+
+  				// выведем пути к загруженным файлам в блок '.ajax-respond'
+  				var files_path = respond.files;
+  				var html = '';
+  				$.each( files_path, function( key, val ){ html += val +'<br>'; } )
+  				$('#loadBar').html( html );
+  			}
+  			else{
+  				console.log('ОШИБКИ ОТВЕТА сервера: ' + respond.error );
+  			}
+  		},
+  		error: function( jqXHR, textStatus, errorThrown ){
+  			console.log('ОШИБКИ AJAX запроса: ' + textStatus );
+  		}
+  	});
+  });
+
+
+-->
+</script>
+<script type="text/javascript"><!--
           $(document).ready(function() {
+
+
+
   /*
-          $('#up').click(function(){
+          $('#up').click(function(){})(jQuery)
           	DelC = $('#InputFile').val();
           	$("#loadBar").html(DelC).show();
           	$.ajax({

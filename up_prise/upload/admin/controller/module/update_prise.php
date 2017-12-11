@@ -112,7 +112,10 @@ class ControllerModuleUpdateprise extends Controller {
 
 	public function addUpload(){
 		$data = array();
-		$data[0] = "заходим в процедуру";
+		if(isset( $_GET['uploadfiles'] )){
+			$data[0] = "заходим в процедуру";
+		}
+
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($data));
