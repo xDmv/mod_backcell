@@ -42,19 +42,21 @@
                          <label class="col-sm-12"><?php echo $text_etap1m; ?></label>
                          <div class="col-sm-5">
                            <?php
-                           foreach ($name_manufacture as $manufacture_name ){
-                             $m_del[] = $manufacture_name;
-                           }
-                            foreach ($n_manufacture as $table_m) {
-                              for ($i = 0, $size = count($m_del); $i < $size; ++$i){
-                                if($table_m['ID'] == $m_del[$i]['manufacturer_id']){
-                                    $temp_m[] = $i;
-                                }
-                              }
-                            }
-                            for ($i = 0, $size = count($temp_m); $i < $size; ++$i){
-                                unset($m_del[$temp_m[$i]]);
-                            }
+                             foreach ($name_manufacture as $manufacture_name ){
+                               $m_del[] = $manufacture_name;
+                             }
+                             if($n_manufacture){
+                               foreach ($n_manufacture as $table_m) {
+                                 for ($i = 0, $size = count($m_del); $i < $size; ++$i){
+                                   if($table_m['ID'] == $m_del[$i]['manufacturer_id']){
+                                       $temp_m[] = $i;
+                                   }
+                                 }
+                               }
+                               for ($i = 0, $size = count($temp_m); $i < $size; ++$i){
+                                   unset($m_del[$temp_m[$i]]);
+                               }
+                             }
                            ?>
                          <select class="form-control m-id" name="manufacturer_id" id="id_man">
                             <?php foreach ($m_del as $manufacture_name){ ?>
@@ -111,7 +113,7 @@
                         <td class="text-center"><?php echo $table_m['Name_category'];?></td>
                         <td class="text-center"><?php echo $table_m['Procent'];?></td>
                         <td class="text-center"><?php echo $table_m['Cheslo'];?></td>
-                        <td class="text-center"><a href="#" data-toggle="tooltip" title="" class="btn btn-danger manufacture-delete" <?php echo "data-original-title='".$del_help."'"; ?> ><i class="fa fa-trash-o"><input type="hidden" name="id_m" value="<?php echo $table_m['ID']; ?>"/></i></a></td>
+                        <td class="text-center"><a href="#" id="manufacture-delete" data-toggle="tooltip" title="" class="btn btn-danger manufacture-delete" <?php echo "data-original-title='".$del_help."'"; ?> ><i class="fa fa-trash-o"><input type="hidden" name="id_m" value="<?php echo $table_m['ID']; ?>"/></i></a></td>
                         <td class="text-center">
                           <button type="button" class="btn btn-primary" id="prim" style="display: none;"><?php echo $button_prim; ?></button>
                           <button type="button" class="btn btn-danger" id="del" style="display: none;"><?php echo $button_del; ?></button>
@@ -136,15 +138,17 @@
                      foreach ($name_category as $category_name ){
                        $c_del[] = $category_name;
                      }
-                      foreach ($n_category as $table_c) {
-                        for ($i = 0, $size = count($c_del); $i < $size; ++$i){
-                          if($table_c['ID'] == $c_del[$i]['category_id']){
-                              $temp_c[] = $i;
+                     if($n_category){
+                        foreach ($n_category as $table_c) {
+                          for ($i = 0, $size = count($c_del); $i < $size; ++$i){
+                            if($table_c['ID'] == $c_del[$i]['category_id']){
+                                $temp_c[] = $i;
+                            }
                           }
                         }
-                      }
-                      for ($i = 0, $size = count($temp_c); $i < $size; ++$i){
-                          unset($c_del[$temp_c[$i]]);
+                        for ($i = 0, $size = count($temp_c); $i < $size; ++$i){
+                            unset($c_del[$temp_c[$i]]);
+                        }
                       }
                      ?>
                    <select class="form-control c-id" name="category_id">
@@ -215,29 +219,28 @@
 
           <script type="text/javascript"><!--
         $(document).ready(function() {
-
-        $('.btn.btn-danger.manufacture-delete').click(function(){
-        DelM = $(this).find('input');
-        $.ajax({
-          url: 'index.php?route=module/mark_ups/deleteManufacture&token=<?php echo $token; ?>',
-          type: 'post',
-          data: DelM,
-          dataType: 'json',
-          beforeSend: function() {
-            console.log('отослано');
-            console.log(json);
-          },
-          error: function (json) {
-            console.log(json);
-          },
-          success: function(json) {
-            console.log('обработано');
-            console.log(json);
-            location.reload();
-          }
-        });
-        return false;
-        });
+          $('#manufacture-delete').click(function(){
+          DelC = $(this).find('input');
+          $.ajax({
+            url: 'index.php?route=module/mark_ups/deleteManufacture&token=<?php echo $token; ?>',
+            type: 'post',
+            data: DelC,
+            dataType: 'json',
+            beforeSend: function() {
+              console.log('отослано');
+              console.log(DelC);
+            },
+            error: function (json) {
+              console.log(json);
+            },
+            success: function(json) {
+              console.log('обработано');
+              console.log(json);
+              location.reload();
+            }
+          });
+          return false;
+          });
 
         $('.btn.btn-danger.category-delete').click(function(){
         DelC = $(this).find('input');
