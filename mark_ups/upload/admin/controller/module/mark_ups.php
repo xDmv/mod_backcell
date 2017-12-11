@@ -27,6 +27,7 @@ class ControllerModuleMarkups extends Controller {
 		$data['table_text'] 			= $this->language->get('table_text');
 		$data['button_save'] 			= $this->language->get('button_save');
 		$data['button_cancel'] 		= $this->language->get('button_cancel');
+
 		$data['table_header'] 		= $this->language->get('table_header');
 		$data['table_edit'] 			= $this->language->get('table_edit');
 		$data['table_delete'] 		= $this->language->get('table_delete');
@@ -92,7 +93,7 @@ class ControllerModuleMarkups extends Controller {
 
 		$data['action'] = $this->url->link('module/mark_ups', 'token=' . $this->session->data['token'], 'SSL');
 
-		$data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
+		$data['cancel'] = $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], $this->ssl);
 		if (isset($this->request->post['mark_ups_status'])) {
 			$data['mark_ups_status'] = $this->request->post['mark_ups_status'];
 		} else {
@@ -127,8 +128,10 @@ class ControllerModuleMarkups extends Controller {
 	public function deleteManufacture(){
 		// получаем значения
 		$text = ($this->request->post['id_m']) ? $this->request->post['id_m'] : 0;
+/*
 		print_r($text);
 		exit;
+*/		
 		// массив вывода
 		$json = array();
 		if (!$text) {
