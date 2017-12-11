@@ -131,7 +131,7 @@ class ControllerModuleMarkups extends Controller {
 /*
 		print_r($text);
 		exit;
-*/		
+*/
 		// массив вывода
 		$json = array();
 		if (!$text) {
@@ -164,6 +164,7 @@ class ControllerModuleMarkups extends Controller {
 		$id = isset($this->request->post['manufacturer_id']) ? $this->request->post['manufacturer_id']:8;
 		$procent = isset($this->request->post['procent']) ? $this->request->post['procent']:0;
 		$cheslo = isset($this->request->post['cheslo']) ? $this->request->post['cheslo']:0;
+
 		// массив вывода
 		$json = array();
 		$this->load->model('module/mark_ups');

@@ -217,7 +217,7 @@
         $('.btn.btn-danger.manufacture-delete').click(function(){
         DelM = $(this).find('input');
         $.ajax({
-          url: 'index.php?route=module/comments/deleteManufacture&token=<?php echo $token; ?>',
+          url: 'index.php?route=module/mark_ups/deleteManufacture&token=<?php echo $token; ?>',
           type: 'post',
           data: DelM,
           dataType: 'json',
@@ -240,7 +240,7 @@
         $('.btn.btn-danger.category-delete').click(function(){
         DelC = $(this).find('input');
         $.ajax({
-          url: 'index.php?route=module/comments/deleteCategory&token=<?php echo $token; ?>',
+          url: 'index.php?route=module/mark_ups/deleteCategory&token=<?php echo $token; ?>',
           type: 'post',
           data: DelC,
           dataType: 'json',
@@ -264,7 +264,7 @@
         var regVr22 = "<div><img style='margin-bottom:-4px;' src='http://oilplus.bestwatch.in.ua/catalog/view/theme/oilplus/image/load.gif' alt='Отправка...' width='16' height='16'><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
         $("#loadBar").html(regVr22).show();
           $.ajax({
-            url: 'index.php?route=module/comments/addManufacture&token=<?php echo $token; ?>',
+            url: 'index.php?route=module/mark_ups/addManufacture&token=<?php echo $token; ?>',
             type: 'post',
             data: $('form#form_manufacture').serialize(),
             dataType: 'json',
@@ -289,7 +289,7 @@
           var regVr22 = "<div><img style='margin-bottom:-4px;' src='http://oilplus.bestwatch.in.ua/catalog/view/theme/oilplus/image/load.gif' alt='Отправка...' width='16' height='16'><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
           $("#loadBar").html(regVr22).show();
             $.ajax({
-              url: 'index.php?route=module/comments/addCategory&token=<?php echo $token; ?>',
+              url: 'index.php?route=module/mark_ups/addCategory&token=<?php echo $token; ?>',
               type: 'post',
               data: $('form#form_category').serialize(),
               dataType: 'json',
