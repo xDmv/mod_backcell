@@ -128,10 +128,6 @@ class ControllerModuleMarkups extends Controller {
 	public function deleteManufacture(){
 		// получаем значения
 		$text = ($this->request->post['id_m']) ? $this->request->post['id_m'] : 0;
-/*
-		print_r($text);
-		exit;
-*/
 		// массив вывода
 		$json = array();
 		if (!$text) {

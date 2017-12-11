@@ -85,8 +85,9 @@
                   <div class="col-sm-12" style="margin-top: 20px; padding: 10px;">
                     <h3 class="panel-title"><b><?php echo $table_header; ?></b></h3>
                   </div>
-                  <table class="table table-striped table-hover table-bordered" >
-                    <thead class="thead-inverse">
+
+                  <table class="table table-striped table-hover table-bordered">
+                    <thead>
                       <tr>
                         <td class="text-center"><?php echo $table_id;?></td>
                         <td class="text-center"><?php echo $table_name;?></td>
@@ -110,7 +111,7 @@
                         <td class="text-center"><?php echo $table_m['Name_category'];?></td>
                         <td class="text-center"><?php echo $table_m['Procent'];?></td>
                         <td class="text-center"><?php echo $table_m['Cheslo'];?></td>
-                        <td class="text-center"><a href="#" title="" class="btn btn-danger manufacture-delete" <?php echo "data-original-title='".$del_help."'"; ?> ><i class="fa fa-trash-o"><input type="hidden" name="id_m" value="<?php echo $table_m['ID']; ?>"/></i></a></td>
+                        <td class="text-center"><a href="#" data-toggle="tooltip" title="" class="btn btn-danger manufacture-delete" <?php echo "data-original-title='".$del_help."'"; ?> ><i class="fa fa-trash-o"><input type="hidden" name="id_m" value="<?php echo $table_m['ID']; ?>"/></i></a></td>
                         <td class="text-center">
                           <button type="button" class="btn btn-primary" id="prim" style="display: none;"><?php echo $button_prim; ?></button>
                           <button type="button" class="btn btn-danger" id="del" style="display: none;"><?php echo $button_del; ?></button>
@@ -120,8 +121,9 @@
                     <?php } ?>
                     <?php } ?>
                   </table>
+
               </div>
-              <div class="tab-pane " id="tab-category">
+            <div class="tab-pane " id="tab-category">
               <div align="center"  id='loadBar'></div>
               <div class="form-group">
                 <label class="col-sm-12"><?php echo $text_etap0; ?></label>

@@ -96,12 +96,20 @@ class ModelModuleMarkups extends Model {
 				SET price = (price - (Select Cheslo From oc_editprice_manufacturer where id = ".$id."))
 				/(1+(Select Procent From oc_editprice_manufacturer where id = ".$id.")/100)
 				Where manufacturer_id = ".$id.";");
+
 			$this->db->query("DELETE FROM " . DB_PREFIX . "editprice_manufacturer WHERE ID = ".$id);
 		return 'deletedM';
 		}
 
 		public function delCategory ($id){
+			$this->db->query("
+				UPDATE " . DB_PREFIX . "product, " . DB_PREFIX . "product_to_category
+				SET oc_product.price =
+				(" . DB_PREFIX . "product.price - (Select Cheslo From " . DB_PREFIX . "editprice_category where id = ".$id."))/(1+(Select Procent From " . DB_PREFIX . "editprice_category where id = ".$id.")/100)
+				Where " . DB_PREFIX . "product.product_id = " . DB_PREFIX . "product_to_category.product_id and " . DB_PREFIX . "product_to_category.category_id = ".$id.";
+			");
 			$this->db->query("DELETE FROM " . DB_PREFIX . "editprice_category WHERE ID = ".$id);
+
 		return 'deletedC';
 		}
 }
