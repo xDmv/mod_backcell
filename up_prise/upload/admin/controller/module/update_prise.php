@@ -85,7 +85,7 @@ class ControllerModuleUpdateprise extends Controller {
 
 		// кнопки
 
-		$data['action'] = $this->url->link('module/update_prise', 'token=' . $this->session->data['token'], 'SSL');
+		$data['action'] = $this->url->link('module/update_prise', 'token=' . $this->session->data['token'], $this->ssl);
 		$data['cancel'] = $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], $this->ssl);
 /*
 		$data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
@@ -99,6 +99,11 @@ class ControllerModuleUpdateprise extends Controller {
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
+
+		$this->load->model('localisation/language');
+
+		$data['languages'] = $this->model_localisation_language->getLanguages();
+
 // передаем данные на отрисовку
 		$this->response->setOutput($this->load->view('module/update_prise.tpl', $data));
 	}
@@ -144,5 +149,67 @@ class ControllerModuleUpdateprise extends Controller {
 
 	}
 
+	public function upload() {
+// читаем какие товары у нас в базе
+
+
+// подготовка к обработке файла
+		$this->load->language('catalog/download');
+
+		$json = array();
+
+		// Check user has permission
+		if (!$this->user->hasPermission('modify', 'catalog/download')) {
+			$json['error'] = $this->language->get('error_permission');
+		}
+
+		if (!$json) {
+			if (!empty($this->request->files['file']['name']) && is_file($this->request->files['file']['tmp_name'])) {
+				// Sanitize the filename
+				$filename = basename(html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8'));
+				// Return any upload error
+				if ($this->request->files['file']['error'] != UPLOAD_ERR_OK) {
+					$json['error'] = $this->language->get('error_upload_' . $this->request->files['file']['error']);
+				}
+			} else {
+				$json['error'] = $this->language->get('error_upload');
+			}
+		}
+
+		if (!$json) {
+			$file = $filename;
+
+			move_uploaded_file($this->request->files['file']['tmp_name'], DIR_DOWNLOAD . $file);
+			$xxx[] = DIR_DOWNLOAD . $file;
+// читаем содержимое файла
+			$fp = fopen($xxx[0], "r");
+			$arrary_ = array();
+			if ($fp)
+			{
+				while (!feof($fp))
+				{
+					$mytext = fgets($fp, 99999);
+					$arr1 = explode(",", $mytext);
+						if ($arr1[0]){
+						 $arrary_[$arr1[0]] = $arr1[1];
+						 $files[] = $arr1[1];
+						}
+				}
+			}
+				else echo "Error ";
+				fclose($fp);
+// в массиве все данные с файла $arrary_
+
+			print_r($arrary_);
+			exit;
+//			$json['filename'] = $file;
+//			$json['mask'] = $filename;
+			$json['success'] = $this->request->files['file']['error'];
+			$json['success'] = $this->language->get('text_upload');
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
 
 }
