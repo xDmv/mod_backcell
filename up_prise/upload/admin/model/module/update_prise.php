@@ -7,7 +7,7 @@ class ModelModuleUpdateprise extends Model {
 			Select model, price From " . DB_PREFIX . "product ;
 		");
 		foreach ($query->rows as $result) {
-			$oldprice[] = $result;
+			$oldprice[$result['model']] = $result['price'];
 		}
 		return $oldprice;
 	}

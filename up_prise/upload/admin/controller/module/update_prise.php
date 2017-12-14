@@ -183,7 +183,7 @@ class ControllerModuleUpdateprise extends Controller {
 			$xxx[] = DIR_DOWNLOAD . $file;
 // читаем содержимое файла
 			$fp = fopen($xxx[0], "r");
-			$arrary_ = array();
+			$newprice = array();
 			if ($fp)
 			{
 				while (!feof($fp))
@@ -191,7 +191,7 @@ class ControllerModuleUpdateprise extends Controller {
 					$mytext = fgets($fp, 99999);
 					$arr1 = explode(",", $mytext);
 						if ($arr1[0]){
-						 $arrary_[$arr1[0]] = $arr1[1];						 
+						 $newprice[$arr1[0]] = $arr1[1];
 						 $files[] = $arr1[1];
 						}
 				}
@@ -202,13 +202,35 @@ class ControllerModuleUpdateprise extends Controller {
 $this->load->model('module/update_prise');
 $oldprice = array();
 $oldprice = $this->model_module_update_prise->Oldprice();
-			print_r($oldprice);
-			print_r("\n New prise");
-			print_r($arrary_);
+// создаем массивы которые потом будем заливать на сервер
+// updp - обновить цены и статус
+// newp - добавить новые товары
+	$updp = array();
+	$newp = array();
+
+// ищем что из старенького нужно обновить и заносим это все в массив $updp
+
+$temp = array();
+	foreach ($oldprice as $key => $value) {
+		/*
+		print_r("\n model: ");
+		print_r($key);
+		print_r("\n price: ");
+		print_r($value);
+*/
+		foreach ($newprice as $key2 => $value2) {
+			if($key === $key2 ){
+				print_r($key2);
+				print_r("\n");
+			}
+		}
+	}
+
+
 			exit;
 //			$json['filename'] = $file;
 //			$json['mask'] = $filename;
-			$json['success'] = $this->request->files['file']['error'];
+//			$json['success'] = $this->request->files['file']['error'];
 			$json['success'] = $this->language->get('text_upload');
 		}
 
