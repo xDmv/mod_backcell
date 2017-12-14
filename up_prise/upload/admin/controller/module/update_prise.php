@@ -154,7 +154,7 @@ class ControllerModuleUpdateprise extends Controller {
 
 
 // подготовка к обработке файла
-		$this->load->language('catalog/download');
+//		$this->load->language('catalog/download');
 
 		$json = array();
 
@@ -191,7 +191,7 @@ class ControllerModuleUpdateprise extends Controller {
 					$mytext = fgets($fp, 99999);
 					$arr1 = explode(",", $mytext);
 						if ($arr1[0]){
-						 $arrary_[$arr1[0]] = $arr1[1];
+						 $arrary_[$arr1[0]] = $arr1[1];						 
 						 $files[] = $arr1[1];
 						}
 				}
@@ -199,7 +199,11 @@ class ControllerModuleUpdateprise extends Controller {
 				else echo "Error ";
 				fclose($fp);
 // в массиве все данные с файла $arrary_
-
+$this->load->model('module/update_prise');
+$oldprice = array();
+$oldprice = $this->model_module_update_prise->Oldprice();
+			print_r($oldprice);
+			print_r("\n New prise");
 			print_r($arrary_);
 			exit;
 //			$json['filename'] = $file;
