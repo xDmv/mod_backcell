@@ -28,24 +28,18 @@
         <div class="text-default"><p><strong><?php echo $text_etap0; ?></strong></p></div>
         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-download" class="form-horizontal">
         <div class="form-group">
-          <span class="add_com">
-      <!--      <form action="#" method="post" enctype="multipart/form-data" id="up_prise" class="form-horizontal"> -->
-            <!--  <div class="form-group"> -->
-                  <label for="exampleInputFile" class="text-default"><p><?php echo $text_etap1m; ?></p></label>
-            <!--
-                  <input type="file" class="form-control-file" name="filename" value="" aria-describedby="fileHelp">
-            </div>  -->
-              <button type="button" class="btn btn-primary" id="button-upload" style="margin-top: 10px;"><?php echo $download; ?></button><br>
-        <!--    </form> -->
-          </span>
+              <label for="exampleInputFile" class="control-label required"><p><?php echo $text_etap1m; ?></p></label>
+            <br>
+              <button type="button" class="btn btn-primary" id="button-upload"><?php echo $download; ?></button><br>
+            
         </div>
         </form>
-        <div class="form-group">
+        <div class="form-group required">
           <label for="exampleInputFile" class="text-default"><p><?php echo $text_etap2; ?></p></label>
           <div class="form-group">
               <button type="button" class="btn btn-primary" name="button_m" id="button_m"><?php echo $button_m; ?></button>
           </div>
-          <div class="form-group">
+          <div class="form-group">required
               <button type="button" class="btn btn-primary" name="button_c" id="button_c"><?php echo $button_c; ?></button>
           </div>
         </div>
