@@ -247,12 +247,24 @@ $ff2 = array();
 */
 // теперь когда получены масивы данных, заносим в БД
 // вначале сделаем все товары что их нет в наличии
-	$this->model_module_update_prise->Status0();
+
+$this->model_module_update_prise->Status0();
+
 // обновим статус товаров которые не изменились
+
+	 $this->model_module_update_prise->Up0($equally);
+
+/*
 // обновим цены товаров, где изменилась цена
+foreach ($updp as $key => $value) {
+	 $this->model_module_update_prise->UpNewprise($key,$value);
+}
 // добавим новые товары
-			$this->model_module_update_prise->Oldprice();
-			exit;
+foreach ($newprice as $key => $value) {
+ $this->model_module_update_prise->InsertNew($key,$value);
+}
+*/
+exit;
 //			$json['filename'] = $file;
 //			$json['mask'] = $filename;
 //			$json['success'] = $this->request->files['file']['error'];

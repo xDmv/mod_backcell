@@ -42,13 +42,15 @@ class ModelModuleUpdateprise extends Model {
 		return 'Insert new product';
 	}
 
-	public function Up0($model) {
+	public function Up0($equally) {
+		foreach ($equally as $model => $value) {
 		$this->db->query("
 			UPDATE " . DB_PREFIX . "product SET
 			status = 1,
 			shipping = 1
 			Where model = '".$model."';
 		");
+	}
 		return 'Update 0';
 	}
 
