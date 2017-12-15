@@ -196,37 +196,62 @@ class ControllerModuleUpdateprise extends Controller {
 						}
 				}
 			}
-				else echo "Error ";
-				fclose($fp);
+			else echo "Error ";
+			fclose($fp);
 // в массиве все данные с файла $arrary_
-$this->load->model('module/update_prise');
-$oldprice = array();
-$oldprice = $this->model_module_update_prise->Oldprice();
+	$this->load->model('module/update_prise');
+	$oldprice = array();
+	$oldprice = $this->model_module_update_prise->Oldprice();
 // создаем массивы которые потом будем заливать на сервер
-// updp - обновить цены и статус
-// newp - добавить новые товары
+// updp - массив где изменилась цена
+// equally - массив где  цена осталась не изменной
 	$updp = array();
-	$newp = array();
+	$equally = array();
 
-// ищем что из старенького нужно обновить и заносим это все в массив $updp
-
-$temp = array();
+// ищем что из массива oldprice нужно обновить ($updp) и что осталос не изменным ($equally),
+// а из массива $newprice будем удалять эти значения, чтоб у нас в нем остались только новые товары
+$ff1 = array();
+$ff2 = array();
 	foreach ($oldprice as $key => $value) {
-		/*
-		print_r("\n model: ");
-		print_r($key);
-		print_r("\n price: ");
-		print_r($value);
-*/
 		foreach ($newprice as $key2 => $value2) {
 			if($key === $key2 ){
-				print_r($key2);
+/*
+				$ff1 = $key . "= key==key2 =" . $key2;
+				$ff2 = $value . "= value==value2 =" . $value2;
+				print_r($ff1);
 				print_r("\n");
+				print_r($ff2);
+*/
+				if(floatval($value) === floatval($value2)){
+					$equally[$key2] = $value2;
+					unset($newprice[$key2]);
+				}
+				else{
+					$updp[$key2] = $value2;
+					unset($newprice[$key2]);
+				}
+
 			}
 		}
 	}
-
-
+/*
+	print_r("\nUpdp:\n");
+	print_r($updp);
+	print_r("\n");
+	print_r("\nequally:");
+	print_r($equally);
+	print_r("\n");
+	print_r("\nnewprice:\n");
+	print_r($newprice);
+	print_r("\n");
+*/
+// теперь когда получены масивы данных, заносим в БД
+// вначале сделаем все товары что их нет в наличии
+	$this->model_module_update_prise->Status0();
+// обновим статус товаров которые не изменились
+// обновим цены товаров, где изменилась цена
+// добавим новые товары
+			$this->model_module_update_prise->Oldprice();
 			exit;
 //			$json['filename'] = $file;
 //			$json['mask'] = $filename;
