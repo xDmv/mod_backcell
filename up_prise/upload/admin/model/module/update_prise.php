@@ -19,7 +19,8 @@ class ModelModuleUpdateprise extends Model {
 		return 'Status 0';
 	}
 
-	public function InsertNew($model,$price) {
+	public function InsertNew($newprice) {
+		foreach ($newprice as $model => $price) {
 		$this->db->query("
 			Insert Into " . DB_PREFIX . "product set
 			model = '".$model."',
@@ -39,6 +40,7 @@ class ModelModuleUpdateprise extends Model {
 			product_id = (Select max(product_id) From " . DB_PREFIX . "product),
 			store_id = 0;
 		");
+	}
 		return 'Insert new product';
 	}
 
@@ -54,7 +56,8 @@ class ModelModuleUpdateprise extends Model {
 		return 'Update 0';
 	}
 
-	public function UpNewprise($model,$price) {
+	public function UpNewprise($updp) {
+		foreach ($updp as $model => $price) {
 		$this->db->query("
 			UPDATE " . DB_PREFIX . "product SET
 			price = '".$price."',
@@ -62,6 +65,7 @@ class ModelModuleUpdateprise extends Model {
 			shipping = 1
 			Where model = '".$model."';
 		");
+		}
 		return 'Update new price';
 	}
 
