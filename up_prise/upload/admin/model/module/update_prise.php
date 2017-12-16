@@ -20,12 +20,13 @@ class ModelModuleUpdateprise extends Model {
 	}
 
 	public function InsertNew($newprice) {
+		$i = 0;
 		foreach ($newprice as $model => $price) {
 		$this->db->query("
 			Insert Into " . DB_PREFIX . "product set
-			model = '".$model."',
-			sku = '".$model."',
-			price = '".$price."',
+			model = ".$model.",
+			sku = ".$model.",
+			price = ".$price.",
 			status = 1,
 			shipping = 1;
 		");
@@ -40,11 +41,13 @@ class ModelModuleUpdateprise extends Model {
 			product_id = (Select max(product_id) From " . DB_PREFIX . "product),
 			store_id = 0;
 		");
+		$i++;
 	}
-		return 'Insert new product';
+		return "Добавлено: $i";
 	}
 
 	public function Up0($equally) {
+		$i = 0;
 		foreach ($equally as $model => $value) {
 		$this->db->query("
 			UPDATE " . DB_PREFIX . "product SET
@@ -52,21 +55,24 @@ class ModelModuleUpdateprise extends Model {
 			shipping = 1
 			Where model = '".$model."';
 		");
+		$i++;
 	}
-		return 'Update 0';
+		return "Без изменений: $i";
 	}
 
 	public function UpNewprise($updp) {
+		$i = 0;
 		foreach ($updp as $model => $price) {
 		$this->db->query("
 			UPDATE " . DB_PREFIX . "product SET
-			price = '".$price."',
+			price = ".$price.",
 			status = 1,
 			shipping = 1
 			Where model = '".$model."';
 		");
+		$i++;
 		}
-		return 'Update new price';
+		return "Обновлено: $i";
 	}
 
 	public function NManufacture() {
