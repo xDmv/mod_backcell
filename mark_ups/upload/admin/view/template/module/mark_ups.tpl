@@ -3,8 +3,8 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right">
-<!--        <button type="submit" form="form-y" data-toggle="tooltip" title="<?php echo $button_save; ?>" class="btn btn-primary"><i class="fa fa-save"></i></button>  -->
-        <a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+        <a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>" class="btn btn-default"><i class="fa fa-reply"></i></a>
+      </div>
       <h1><?php echo $heading_title; ?></h1>
       <ul class="breadcrumb">
         <?php foreach ($breadcrumbs as $breadcrumb) { ?>
@@ -24,13 +24,11 @@
         <h3 class="panel-title"><i class="fa fa-cogs"></i> <?php echo $heading_title; ?></h3>
       </div>
       <div class="panel-body">
-
           <div align="center"  id='loadBar'></div>
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-manufacture" data-toggle="tab"><?php echo $tab_manufacture; ?></a></li>
             <li><a href="#tab-category" data-toggle="tab"><?php echo $tab_category; ?></a></li>
           </ul>
-
           <div class="tab-content">
             <div class="tab-pane active" id="tab-manufacture">
                   <div class="form-group">
@@ -87,7 +85,6 @@
                   <div class="col-sm-12" style="margin-top: 20px; padding: 10px;">
                     <h3 class="panel-title"><b><?php echo $table_header; ?></b></h3>
                   </div>
-
                   <table class="table table-striped table-hover table-bordered">
                     <thead>
                       <tr>
@@ -123,7 +120,6 @@
                     <?php } ?>
                     <?php } ?>
                   </table>
-
               </div>
             <div class="tab-pane " id="tab-category">
               <div align="center"  id='loadBar'></div>
@@ -153,7 +149,7 @@
                      ?>
                    <select class="form-control c-id" name="category_id">
                      <?php foreach ($c_del as $category_name){ ?>
-                       <option <?php echo "value='".$category_name['category_id']."'"; ?> > <?php echo $category_name['name']; ?> </option>
+                       <option <?php echo "value='".$category_name['category_id']."'"; ?> ><?php echo $category_name['name']; ?></option>
                      <?php } ?>
                    </select>
                    </div>
@@ -216,8 +212,7 @@
               </table>
               </div>
           </div>
-
-          <script type="text/javascript"><!--
+        <script type="text/javascript"><!--
         $(document).ready(function() {
           $('#manufacture-delete').click(function(){
           DelC = $(this).find('input');
@@ -275,11 +270,9 @@
             dataType: 'json',
             beforeSend: function() {
               console.log('отослано');
-              //console.log(json);
             },
             error: function (_e) {
               console.log(_e);
-              //console.log(json);
             },
             success: function(response) {
               console.log('обработано');
@@ -300,11 +293,9 @@
               dataType: 'json',
               beforeSend: function() {
                 console.log('отослано');
-                //console.log(json);
               },
               error: function (_e) {
                 console.log(_e);
-                //console.log(json);
               },
               success: function(response) {
                 console.log('обработано');
@@ -314,11 +305,9 @@
             });
             return false;
           });
-
         });
-        //--></script>
-
-
+        //-->
+        </script>
     </div>
   </div>
 </div>
