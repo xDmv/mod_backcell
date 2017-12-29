@@ -1,7 +1,7 @@
 <modification>
-	<name>Наценки на товары</name>
+	<name>Mark-ups (Наценка товаров)</name>
 	<code>Mark-ups</code>
-	<version>1.0.0</version>
+	<version>2.0.1</version>
 	<author>xx.xx@gmail.com</author>
 	<link>http://bestwatch.in.ua</link>
 	<file path="admin/controller/common/menu.php">
@@ -22,7 +22,7 @@
 		<operation error="skip">
 			<search><![CDATA[$_['text_backup']]]></search>
 			<add position="after"><![CDATA[
-				$_['text_mark_ups'] = 'Mark ups';
+				$_['text_mark_ups'] = 'Наценка товаров';
 			]]></add>
 		</operation>
 	</file>
@@ -50,7 +50,7 @@
 		<operation error="skip">
 			<search><![CDATA[$_['text_backup']]]></search>
 			<add position="after"><![CDATA[
-				$_['text_mark_ups']             = 'Наценки';
+				$_['text_mark_ups']             = 'Наценки товаров';
 			]]></add>
 		</operation>
 	</file>
