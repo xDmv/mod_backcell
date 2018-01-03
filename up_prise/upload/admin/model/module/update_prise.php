@@ -4,10 +4,10 @@ class ModelModuleUpdateprise extends Model {
 	public function Oldprice() {
 		$oldprice = array();
 		$query = $this->db->query("
-			Select model, price From " . DB_PREFIX . "product ;
+			Select sku, price From " . DB_PREFIX . "product ;
 		");
 		foreach ($query->rows as $result) {
-			$oldprice[$result['model']] = $result['price'];
+			$oldprice[$result['sku']] = $result['price'];
 		}
 		return $oldprice;
 	}
@@ -21,11 +21,10 @@ class ModelModuleUpdateprise extends Model {
 
 	public function InsertNew($newprice) {
 		$i = 0;
-		foreach ($newprice as $model => $price) {
+		foreach ($newprice as $sku => $price) {
 		$this->db->query("
-			Insert Into " . DB_PREFIX . "product set
-			model = ".$model.",
-			sku = ".$model.",
+			Insert Into " . DB_PREFIX . "product set			
+			sku = ".$sku.",
 			price = ".$price.",
 			status = 1,
 			shipping = 1;
@@ -48,12 +47,12 @@ class ModelModuleUpdateprise extends Model {
 
 	public function Up0($equally) {
 		$i = 0;
-		foreach ($equally as $model => $value) {
+		foreach ($equally as $sku => $value) {
 		$this->db->query("
 			UPDATE " . DB_PREFIX . "product SET
 			status = 1,
 			shipping = 1
-			Where model = '".$model."';
+			Where sku = '".$sku."';
 		");
 		$i++;
 	}
@@ -62,13 +61,13 @@ class ModelModuleUpdateprise extends Model {
 
 	public function UpNewprise($updp) {
 		$i = 0;
-		foreach ($updp as $model => $price) {
+		foreach ($updp as $sku => $price) {
 		$this->db->query("
 			UPDATE " . DB_PREFIX . "product SET
 			price = ".$price.",
 			status = 1,
 			shipping = 1
-			Where model = '".$model."';
+			Where sku = '".$sku."';
 		");
 		$i++;
 		}
