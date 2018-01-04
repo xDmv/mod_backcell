@@ -56,11 +56,11 @@
         	if (typeof timer != 'undefined') {
             	clearInterval(timer);
         	}
-          var regVr22 = "<div><img style='margin-bottom:-4px;' src='http://oilplus.bestwatch.in.ua/catalog/view/theme/oilplus/image/load.gif' alt='Отправка...' width='16' height='16'><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
+          var regVr22 = "<div><img style='margin-bottom:-4px;' src='admin/view/images/load.gif' alt='Идет обработка данных...' width='16' height='16'><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
         	timer = setInterval(function() {
         		if ($('#form-upload input[name=\'file\']').val() != '') {
         			clearInterval(timer);
-
+					$("#loadBar").html(regVr22).show();
         			$.ajax({
         				url: 'index.php?route=module/update_prise/upload&token=<?php echo $token; ?>',
         				type: 'post',

@@ -180,6 +180,7 @@ class ControllerModuleUpdateprise extends Controller {
 				$upnew = $this->model_module_update_prise->UpNewprise($updp);
 				// добавим новые товары
 				$new = $this->model_module_update_prise->InsertNew($newprice);
+
 				// выводим сколько товаров было на сайте и сколько в прайсе
 				 $full = "Обработано товаров $pr из $old ";
 				 // записываем все данные в переменную для вывода на экран

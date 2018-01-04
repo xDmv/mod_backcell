@@ -22,12 +22,15 @@ class ModelModuleUpdateprise extends Model {
 	public function InsertNew($newprice) {
 		$i = 0;
 		foreach ($newprice as $sku => $price) {
+
 		$this->db->query("
 			Insert Into " . DB_PREFIX . "product set			
 			sku = ".$sku.",
 			price = ".$price.",
 			status = 1,
-			shipping = 1;
+			shipping = 1,
+			minimum = 1,
+			quantity = 10;
 		");
 		$this->db->query("
 			Insert Into " . DB_PREFIX . "product_description set
@@ -39,6 +42,11 @@ class ModelModuleUpdateprise extends Model {
 			Insert Into " . DB_PREFIX . "product_to_store set
 			product_id = (Select max(product_id) From " . DB_PREFIX . "product),
 			store_id = 0;
+		");
+		$this->db->query("
+			Update " . DB_PREFIX . "product Set 
+			model =  product_id 
+			Where sku = ".$sku.";
 		");
 		$i++;
 	}
