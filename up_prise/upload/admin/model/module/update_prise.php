@@ -24,7 +24,8 @@ class ModelModuleUpdateprise extends Model {
 		foreach ($newprice as $sku => $price) {
 
 		$this->db->query("
-			Insert Into " . DB_PREFIX . "product set			
+			Insert Into " . DB_PREFIX . "product set
+			model = CONCAT('us', ".$sku." ),
 			sku = ".$sku.",
 			price = ".$price.",
 			status = 1,
@@ -43,11 +44,13 @@ class ModelModuleUpdateprise extends Model {
 			product_id = (Select max(product_id) From " . DB_PREFIX . "product),
 			store_id = 0;
 		");
+		/*
 		$this->db->query("
-			Update " . DB_PREFIX . "product Set 
-			model =  product_id 
+			Update " . DB_PREFIX . "product Set
+			model =  product_id
 			Where sku = ".$sku.";
 		");
+		*/
 		$i++;
 	}
 		return "Добавлено: $i";
