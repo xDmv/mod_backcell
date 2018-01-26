@@ -24,13 +24,13 @@
         <h3 class="panel-title"><i class="fa fa-cogs"></i> <?php echo $heading_title; ?></h3>
       </div>
       <div class="panel-body">
-          <div align="center"  id='loadBar'></div>
+          <div align="center"  id='loadBar1'></div>
           <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab-manufacture" data-toggle="tab"><?php echo $tab_manufacture; ?></a></li>
-            <li><a href="#tab-category" data-toggle="tab"><?php echo $tab_category; ?></a></li>
+            <li><a href="#tab-manufacture" data-toggle="tab"><?php echo $tab_manufacture; ?></a></li>
+            <li class="active"><a href="#tab-category" data-toggle="tab"><?php echo $tab_category; ?></a></li>
           </ul>
           <div class="tab-content">
-            <div class="tab-pane active" id="tab-manufacture">
+            <div class="tab-pane" id="tab-manufacture">
                   <div class="form-group">
                     <label class="col-sm-12"><?php echo $text_etap0; ?></label>
                   </div>
@@ -121,8 +121,8 @@
                     <?php } ?>
                   </table>
               </div>
-            <div class="tab-pane " id="tab-category">
-              <div align="center"  id='loadBar'></div>
+            <div class="tab-pane active" id="tab-category">
+              <div align="center"  id='loadBar2'></div>
               <div class="form-group">
                 <label class="col-sm-12"><?php echo $text_etap0; ?></label>
               </div>
@@ -262,7 +262,7 @@
 
         $('#send_m').click(function(){
         var regVr22 = "<div><img style='margin-bottom:-4px;' src='http://oilplus.bestwatch.in.ua/catalog/view/theme/oilplus/image/load.gif' alt='Отправка...' width='16' height='16'><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
-        $("#loadBar").html(regVr22).show();
+        $("#loadBar1").html(regVr22).show();
           $.ajax({
             url: 'index.php?route=module/mark_ups/addManufacture&token=<?php echo $token; ?>',
             type: 'post',
@@ -285,7 +285,7 @@
 
         $('#send_c').click(function(){
           var regVr22 = "<div><img style='margin-bottom:-4px;' src='http://oilplus.bestwatch.in.ua/catalog/view/theme/oilplus/image/load.gif' alt='Отправка...' width='16' height='16'><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
-          $("#loadBar").html(regVr22).show();
+          $("#loadBar2").html(regVr22).show();
             $.ajax({
               url: 'index.php?route=module/mark_ups/addCategory&token=<?php echo $token; ?>',
               type: 'post',

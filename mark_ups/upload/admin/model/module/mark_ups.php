@@ -70,8 +70,8 @@ class ModelModuleMarkups extends Model {
 			('".$id."', (Select distinct name From oc_manufacturer_description Where manufacturer_id = '".$id."'),'".$procent."','".$cheslo."','".$data."')");
 
 			$this->db->query(" Update " . DB_PREFIX . "product set
-			price = (price * (Select Procent From " . DB_PREFIX . "editprice_manufacturer where id = ".$id.") / 100 +
-			(Select Cheslo From oc_editprice_manufacturer where id = ".$id.") + price)
+			price = (price0 * (Select Procent From " . DB_PREFIX . "editprice_manufacturer where id = ".$id.") / 100 +
+			(Select Cheslo From oc_editprice_manufacturer where id = ".$id.") + price0)
 			Where manufacturer_id = ".$id.";");
 
 			return 'addM';
@@ -84,8 +84,8 @@ class ModelModuleMarkups extends Model {
 			('".$id."', (Select name From " . DB_PREFIX . "category_description Where category_id = '".$id."'),'".$procent."','".$cheslo."','".$data."');");
 
 			$this->db->query("Update " . DB_PREFIX . "product, " . DB_PREFIX . "product_to_category Set
-			" . DB_PREFIX . "product.price = " . DB_PREFIX . "product.price * (Select Procent From " . DB_PREFIX . "editprice_category where id = ".$id.") / 100
-			+ (Select Cheslo From oc_editprice_category where id = ".$id.") + " . DB_PREFIX . "product.price
+			" . DB_PREFIX . "product.price = " . DB_PREFIX . "product.price0 * (Select Procent From " . DB_PREFIX . "editprice_category where id = ".$id.") / 100
+			+ (Select Cheslo From oc_editprice_category where id = ".$id.") + " . DB_PREFIX . "product.price0
 			Where " . DB_PREFIX . "product.product_id = " . DB_PREFIX . "product_to_category.product_id and " . DB_PREFIX . "product_to_category.category_id = ".$id.";");
 
 			return 'addC';
