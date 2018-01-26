@@ -27,7 +27,7 @@ class ModelModuleUpdateprise extends Model {
 			Insert Into " . DB_PREFIX . "product set
 			model = CONCAT('us', ".$sku." ),
 			sku = ".$sku.",
-			price = ".$price.",
+			price0 = ".$price.",
 			status = 1,
 			shipping = 1,
 			minimum = 1,
@@ -75,7 +75,7 @@ class ModelModuleUpdateprise extends Model {
 		foreach ($updp as $sku => $price) {
 		$this->db->query("
 			UPDATE " . DB_PREFIX . "product SET
-			price = ".$price.",
+			price0 = ".$price.",
 			status = 1,
 			shipping = 1
 			Where sku = '".$sku."';
@@ -89,8 +89,8 @@ class ModelModuleUpdateprise extends Model {
 
 		$this->db->query("
 			Update " . DB_PREFIX . "product, " . DB_PREFIX . "editprice_manufacturer set
-			price = (price * (Select Procent From " . DB_PREFIX . "editprice_manufacturer where id = " . DB_PREFIX . "product.manufacturer_id) / 100 +
-			(Select Cheslo From " . DB_PREFIX . "editprice_manufacturer where id = " . DB_PREFIX . "product.manufacturer_id) + price)
+			price = (price0 * (Select Procent From " . DB_PREFIX . "editprice_manufacturer where id = " . DB_PREFIX . "product.manufacturer_id) / 100 +
+			(Select Cheslo From " . DB_PREFIX . "editprice_manufacturer where id = " . DB_PREFIX . "product.manufacturer_id) + price0)
 			Where " . DB_PREFIX . "product.manufacturer_id = " . DB_PREFIX . "editprice_manufacturer.id
 		");
 		return 'Manufacture Up';
@@ -107,8 +107,8 @@ class ModelModuleUpdateprise extends Model {
 			foreach ($result as $key => $val){
 				$this->db->query("
 					Update " . DB_PREFIX . "product, " . DB_PREFIX . "product_to_category Set
-					" . DB_PREFIX . "product.price = " . DB_PREFIX . "product.price * (Select Procent From " . DB_PREFIX . "editprice_category where id = ".$val.") / 100
-					+ (Select Cheslo From " . DB_PREFIX . "editprice_category where id = ".$val.") + " . DB_PREFIX . "product.price
+					" . DB_PREFIX . "product.price = " . DB_PREFIX . "product.price0 * (Select Procent From " . DB_PREFIX . "editprice_category where id = ".$val.") / 100
+					+ (Select Cheslo From " . DB_PREFIX . "editprice_category where id = ".$val.") + " . DB_PREFIX . "product.price0
 					Where " . DB_PREFIX . "product.product_id = " . DB_PREFIX . "product_to_category.product_id and " . DB_PREFIX . "product_to_category.category_id = ".$val.";
 				");
 			}

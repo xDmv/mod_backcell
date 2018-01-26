@@ -39,10 +39,10 @@
         <div class="form-group">
           <label for="exampleInputFile" class="text-default"><p><?php echo $text_etap2; ?></p></label>
           <div class="form-group ">
-              <button type="button" class="btn btn-primary required" name="button_m" id="button_m"><?php echo $button_m; ?></button>
+              <button type="button" class="btn btn-success" name="button_c" id="button_c"><?php echo $button_c; ?></button>
           </div>
           <div class="form-group ">
-              <button type="button" class="btn btn-primary" name="button_c" id="button_c"><?php echo $button_c; ?></button>
+              <button type="button" class="btn btn-success" name="button_m" id="button_m"><?php echo $button_m; ?></button>
           </div>
         </div>
       <script type="text/javascript"><!--
@@ -56,7 +56,7 @@
         	if (typeof timer != 'undefined') {
             	clearInterval(timer);
         	}
-          var regVr22 = "<div><img style='margin-bottom:-4px;' src='admin/view/images/load.gif' alt='Идет обработка данных...' width='16' height='16'><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
+          var regVr22 = "<div><i class='fa fa-spinner fa-pulse fa-2x fa-fw'></i><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
         	timer = setInterval(function() {
         		if ($('#form-upload input[name=\'file\']').val() != '') {
         			clearInterval(timer);
