@@ -18,7 +18,23 @@ class ControllerCellback extends Controller {
 		}
 		// определяем переменные
 		//$data['mod_id'] = $this->request->get['module_id'];
-		$data['heading_title']  	= $this->language->get('heading_title');
+		$data['heading_title']  			= $this->language->get('heading_title');
+// закладки
+		$data['tab_message'] 					= $this->language->get( 'tab_message' );
+		$data['tab_setting'] 					= $this->language->get( 'tab_setting' );
+// таблица
+		$data['table_header'] 				= $this->language->get( 'table_header' );
+		$data['table_id'] 						= $this->language->get( 'table_id' );
+		$data['table_date_creature'] 	= $this->language->get( 'table_date_creature' );
+		$data['table_date_cellback'] 	= $this->language->get( 'table_date_cellback' );
+		$data['table_name'] 					= $this->language->get( 'table_name' );
+		$data['table_telepfon'] 			= $this->language->get( 'table_telepfon' );
+		$data['table_comment'] 				= $this->language->get( 'table_comment' );
+		$data['table_del'] 						= $this->language->get( 'table_del' );
+// текстовка
+
+
+// другие возможно удалить
 		$data['text_edit'] 				= $this->language->get('text_edit');
 		$data['text_enabled'] 		= $this->language->get('text_enabled');
 		$data['text_disabled'] 		= $this->language->get('text_disabled');
@@ -28,24 +44,12 @@ class ControllerCellback extends Controller {
 		$data['button_save'] 			= $this->language->get('button_save');
 		$data['button_cancel'] 		= $this->language->get('button_cancel');
 
-		$data['table_header'] 		= $this->language->get('table_header');
+
 		$data['table_edit'] 			= $this->language->get('table_edit');
 		$data['table_delete'] 		= $this->language->get('table_delete');
 		$data['table_id'] 				= $this->language->get('table_id');
 		$data['token'] 						= $this->session->data['token'];
 		$data['title_add'] 				= $this->language->get('title_add');
-
-		$data['table_header'] 		= $this->language->get( 'table_header' );
-		$data['table_id'] 				= $this->language->get( 'table_id' );
-		$data['table_name'] 			= $this->language->get( 'table_name' );
-		$data['table_procent'] 		= $this->language->get( 'table_procent' );
-		$data['table_cheslo'] 		= $this->language->get( 'table_cheslo' );
-		$data['table_del'] 				= $this->language->get( 'table_del' );
-		$data['table_up'] 				= $this->language->get( 'table_up' );
-		$data['table_prin'] 			= $this->language->get( 'table_prin' );
-
-		$data['tab_manufacture'] 	= $this->language->get( 'tab_manufacture' );
-		$data['tab_category'] 		= $this->language->get( 'tab_category' );
 
 		$data['button_prim'] 			= $this->language->get( 'button_prim' );
 		$data['button_del'] 			= $this->language->get( 'button_del' );

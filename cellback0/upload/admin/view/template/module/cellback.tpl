@@ -20,83 +20,40 @@
     </div>
     <?php } ?>
     <div class="panel panel-default">
+      <!--
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-cogs"></i> <?php echo $heading_title; ?></h3>
       </div>
+    -->
       <div class="panel-body">
           <div align="center"  id='loadBar1'></div>
           <ul class="nav nav-tabs">
-            <li><a href="#tab-manufacture" data-toggle="tab"><?php echo $tab_manufacture; ?></a></li>
-            <li class="active"><a href="#tab-category" data-toggle="tab"><?php echo $tab_category; ?></a></li>
+            <li class="active"><a href="#tab_message" data-toggle="tab"><?php echo $tab_tab_message; ?></a></li>
+            <li><a href="#tab-setting" data-toggle="tab"><?php echo $tab_setting; ?></a></li>
           </ul>
           <div class="tab-content">
-            <div class="tab-pane" id="tab-manufacture">
+            <div class="tab-pane active" id="tab_message">
                   <div class="form-group">
                     <label class="col-sm-12"><?php echo $text_etap0; ?></label>
                   </div>
-                  <div class="form_manufacture">
-                    <form action="#" method="post" id="form_manufacture">
-                      <div class="form-group">
-                         <label class="col-sm-12"><?php echo $text_etap1m; ?></label>
-                         <div class="col-sm-5">
-                           <?php
-                             foreach ($name_manufacture as $manufacture_name ){
-                               $m_del[] = $manufacture_name;
-                             }
-                             if($n_manufacture){
-                               foreach ($n_manufacture as $table_m) {
-                                 for ($i = 0, $size = count($m_del); $i < $size; ++$i){
-                                   if($table_m['ID'] == $m_del[$i]['manufacturer_id']){
-                                       $temp_m[] = $i;
-                                   }
-                                 }
-                               }
-                               for ($i = 0, $size = count($temp_m); $i < $size; ++$i){
-                                   unset($m_del[$temp_m[$i]]);
-                               }
-                             }
-                           ?>
-                         <select class="form-control m-id" name="manufacturer_id" id="id_man">
-                            <?php foreach ($m_del as $manufacture_name){ ?>
-                              <option <?php echo "value='".$manufacture_name['manufacturer_id']."'"; ?> > <?php echo $manufacture_name['name']; ?> </option>
-                            <?php } ?>
-                         </select>
-                         </div>
-                      </div>
-                      <div class="form-group required" id="etap2">
-                        <label class="col-sm-12"><?php echo $text_etap2; ?></label><br>
-                        <label class="col-sm-2"><?php echo $text_procent; ?></label>
-                        <div class="col-sm-2 m-procent" >
-                          <input type="number" name="procent" id="procent" class="form-control" value="0.00" min="-100" max="1000" step="0.01"/>
-                        </div>
-                        <label class="col-sm-2"><?php echo $text_cheslo; ?></label>
-                        <div class="col-sm-2 m-cheslo" >
-                          <input type="number" name="cheslo" id="cheslo" class="form-control" value="0.00" min="-1000" max="1000" step="0.01"/>
-                        </div>
-                      </div>
-                    </form>
-                    <div class="form-group">
-                      <label class="col-sm-12"><?php echo $text_etap3; ?></label>
-                      <div class="col-sm-2">
-                        <input type="submit" class="btn btn-primary" id="send_m" value=<?php echo "'".$button_prim."'";?> >
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-12" style="margin-top: 20px; padding: 10px;">
+
+                  <div class="col-sm-12">
                     <h3 class="panel-title"><b><?php echo $table_header; ?></b></h3>
                   </div>
                   <table class="table table-striped table-hover table-bordered">
                     <thead>
                       <tr>
                         <td class="text-center"><?php echo $table_id;?></td>
+                        <td class="text-center"><?php echo $table_date_creature;?></td>
+                        <td class="text-center"><?php echo $table_date_cellback;?></td>
                         <td class="text-center"><?php echo $table_name;?></td>
-                        <td class="text-center"><?php echo $table_procent;?></td>
-                        <td class="text-center"><?php echo $table_cheslo;?></td>
+                        <td class="text-center"><?php echo $table_telepfon;?></td>
+                        <td class="text-center"><?php echo $table_comment;?></td>
                         <td class="text-center"><?php echo $table_del;?></td>
-                        <td class="text-center"><?php echo $table_up;?></td>
                       </tr>
                     </thead>
                     <?php if(!$n_manufacture) { echo "<tr>
+                      <td class='text-center'>".$text_no_data."</td>
                       <td class='text-center'>".$text_no_data."</td>
                       <td class='text-center'>".$text_no_data."</td>
                       <td class='text-center'>".$text_no_data."</td>
@@ -121,7 +78,7 @@
                     <?php } ?>
                   </table>
               </div>
-            <div class="tab-pane active" id="tab-category">
+            <div class="tab-pane" id="tab-setting">
               <div align="center"  id='loadBar2'></div>
               <div class="form-group">
                 <label class="col-sm-12"><?php echo $text_etap0; ?></label>
