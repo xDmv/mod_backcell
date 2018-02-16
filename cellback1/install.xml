@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+  <name>Cellback</name>
+  <code>Cellback</code>
+  <version>1.0.1</version>
+  <author>Dmitryi Makushin</author>
+  <link>http://mobilka.net.ua</link>
+
+  <!--
+  ********* ADMIN **********
+  -->
+  <file path="admin/controller/common/menu.php">
+    <operation error="skip">
+      <search><![CDATA[$data['text_backup'] = $this->language->get('text_backup');]]></search>
+      <add position="after"><![CDATA[
+    $data['text_cellback'] = $this->language->get('text_cellback');
+      ]]></add>
+    </operation>
+    <operation error="skip">
+      <search><![CDATA[$data['backup'] = $this->url->link('module/backup', 'token=' . $this->session->data['token'],]]></search>
+      <add position="after"><![CDATA[
+        $data['cellback'] = $this->url->link('module/cellback', 'token=' . $this->session->data['token'], (version_compare(PHP_VERSION, '2.2.0.0') >= 0) ? true : 'SSL');
+      ]]></add>
+    </operation>
+  </file>
+  <file path="admin/language/*/common/menu.php">
+    <operation error="skip">
+      <search><![CDATA[$_['text_backup']]]></search>
+      <add position="after"><![CDATA[
+        $_['text_cellback'] = 'Обратный звонок';
+      ]]></add>
+    </operation>
+  </file>
+  <file path="admin/view/template/common/menu.tpl">
+    <operation error="skip">
+      <search><![CDATA[<li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>]]></search>
+      <add position="replace"><![CDATA[<li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li><li><a href="<?php echo $cellback; ?>"><?php echo $text_cellback; ?></a></li>]]></add>
+    </operation>
+  </file>
+  <file path="admin/controller/common/column_left.php">
+    <operation error="skip">
+      <search><![CDATA[if ($this->user->hasPermission('access', 'tool/log')) {]]></search>
+      <add position="before"><![CDATA[
+      if ($this->user->hasPermission('access', 'module/cellback')) {
+        $tool[] = array(
+          'name'	   => $this->language->get('text_cellback'),
+          'href'     => $this->url->link('module/cellback', 'token=' . $this->session->data['token'], true),
+          'children' => array()
+        );
+      }
+      ]]></add>
+    </operation>
+  </file>
+  <file path="admin/language/*/common/column_left.php">
+    <operation error="skip">
+      <search><![CDATA[$_['text_backup']]]></search>
+      <add position="after"><![CDATA[
+        $_['text_cellback']             = 'Обратный звaнок';
+      ]]></add>
+    </operation>
+  </file>
+
+  <!--
+  **
+  **
+  ********* CATALOG **********
+  **
+  **
+  -->
+  <!--
+    изменяем контроллер
+  -->
+  <file path="catalog/view/theme/*/template/common/footer.tpl">
+      <operation>
+          <search><![CDATA[</body>]]></search>
+          <add position="before"><![CDATA[
+
+            ]]>
+          </add>
+      </operation>
+  </file>
+<!--
+  изменяем footer добавляя туда кнопку с мобальным окном и формой
+-->
+  <file path="catalog/view/theme/*/template/common/footer.tpl">
+      <operation>
+          <search><![CDATA[</body>]]></search>
+          <add position="before"><![CDATA[
+            <div style="position: fixed; top: 90px; right: 5px; z-index: 120;">
+                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal" style="font-size: 14px;">&nbsp;Заказ обратного звонка</button>
+                <div align="center" id="loadBar">
+                </div>
+            </div>
+            <div class="modal" id="modal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <form action="#" method="post" id="form_cellback">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title">Заказ обратного звонка</h3>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group has-success cye-lm-tag">
+                      <label class="control-label" for="inputSuccess">Имя</label>
+                      <input type="text" class="form-control cye-lm-tag" name="name" id="name">
+                    </div>
+                    <div class="form-group has-success cye-lm-tag">
+                      <label class="control-label" for="inputSuccess">Номер телефона</label>
+                      <input type="text" class="form-control cye-lm-tag" name="telepfon" id="telepfon">
+                    </div>
+                    <div class="form-group">
+                      <label for="textArea" class="col-lg-2 control-label">Комментарий</label>
+                      <div class="col-lg-10">
+                        <textarea class="form-control" rows="4" name="coment" id="textArea"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="select" class="col-sm-12 control-label">Ваш вопрос</label>
+                      <div class="col-sm-12">
+                        <select class="form-control" name="question" id="select-q">
+                          <option>Узнать наличие</option>
+                          <option>Заказать товар</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="select" class="col-sm-12 control-label">Когда позвонить?</label>
+                      <label for="select" class="col-sm-1 control-label">Дата</label>
+                      <div class="col-sm-3">
+                        <select class="form-control" name="data-day" id="select-day">
+                          <option>Сегодня</option>
+                          <option>Завтра</option>
+                          <option>Послезавтра</option>
+                        </select>
+                      </div>
+                      <label for="select" class="col-sm-1 control-label">Время с</label>
+                      <div class="col-sm-3">
+                        <select class="form-control" name="time-c" id="select-c">
+                          <option>9-00</option>
+                          <option>10-00</option>
+                          <option>11-00</option>
+                          <option>12-00</option>
+                          <option>13-00</option>
+                          <option>14-00</option>
+                          <option>15-00</option>
+                          <option>16-00</option>
+                        </select>
+                      </div>
+                      <label for="select" class="col-sm-1 control-label">до</label>
+                      <div class="col-sm-3">
+                        <select class="form-control" name="time-do" id="select-do">
+                          <option>10-00</option>
+                          <option>11-00</option>
+                          <option>12-00</option>
+                          <option>13-00</option>
+                          <option>14-00</option>
+                          <option>15-00</option>
+                          <option>16-00</option>
+                          <option>17-00</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="cellback">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script>
+              $('#cellback').click(function(){
+              var regVr22 = "<div><i class='fa fa-spinner fa-pulse fa-2x fa-fw'></i><span style='font: 11px Verdana; color:#333; margin-left:6px;'>Информация обрабатывается...</span></div><br/>";
+              $("#loadBar").html(regVr22).show();
+                $.ajax({
+                  url: 'index.php?route=extension/module/cellback/Cellback&token=<?php echo $token; ?>',
+                  type: 'post',
+                  data: $('form#form_cellback').serialize(),
+                  dataType: 'json',
+                  beforeSend: function() {
+                    console.log('отослано');
+                  },
+                  error: function (_e) {
+                    console.log(_e);
+                  },
+                  success: function(response) {
+                    console.log('обработано');
+                    console.log(response);
+                    location.reload();
+                  }
+                });
+                return false;
+              });
+            </script>
+            ]]>
+          </add>
+      </operation>
+  </file>
+
+</modification>
