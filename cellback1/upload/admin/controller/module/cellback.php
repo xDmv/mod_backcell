@@ -31,6 +31,12 @@ class ControllerCellback extends Controller {
 		$data['table_telepfon'] 			= $this->language->get( 'table_telepfon' );
 		$data['table_comment'] 				= $this->language->get( 'table_comment' );
 		$data['table_del'] 						= $this->language->get( 'table_del' );
+		$data['mail'] 								= $this->language->get( 'mail' );
+		$data['bg_form'] 							= $this->language->get( 'bg_form' );
+		$data['capcha'] 							= $this->language->get( 'capcha' );
+		$data['capcha1key'] 					= $this->language->get( 'capcha1key' );
+		$data['capcha2key'] 					= $this->language->get( 'capcha2key' );
+
 // текстовка
 
 

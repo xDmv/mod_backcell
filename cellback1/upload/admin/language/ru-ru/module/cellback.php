@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']    = 'Модуль заказа обратного звонка';
+$_['heading_title']                         = 'Модуль заказа обратного звонка';
 
 // edit_prise start
 $_['tab_message']                           = '<i class="fa fa-commenting" aria-hidden="true"></i>Сообщения с пользователей';
@@ -18,15 +18,20 @@ $_['table_del']                             = '<i class="fa fa-trash" aria-hidde
 
 // setting
 $_['text_no_data']                          = 'Нет данных';
+$_['mail']                                  = 'Введите почтовый ящик на который нужно прислать';
+$_['bg_form']                               = 'Введите цвет формы в формате #ffffff';
+$_['capcha']                                = 'Капча гугл, номер';
+$_['capcha1key']                            = 'Ключь первый';
+$_['capcha2key']                            = 'Ключь второй';
 
 // удалить как не нужное
 // Text
-$_['text_module']      = 'Modules';
-$_['text_total']      = 'Order Totals';
-$_['text_payment']      = 'Payments';
-$_['text_shipping']      = 'Shipping';
-$_['text_feed']      = 'Feeds';
-$_['text_success']     = 'Success: You have modified module Y!';
+$_['text_module']                           = 'Modules';
+$_['text_total']                            = 'Order Totals';
+$_['text_payment']                          = 'Payments';
+$_['text_shipping']                         = 'Shipping';
+$_['text_feed']                             = 'Feeds';
+$_['text_success']                          = 'Success: You have modified module Y!';
 
 
 // Error

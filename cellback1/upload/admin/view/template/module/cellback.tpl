@@ -32,7 +32,7 @@
             <li><a href="#tab-setting" data-toggle="tab"><?php echo $tab_setting; ?></a></li>
           </ul>
           <div class="tab-content">
-            <div class="tab-pane active" id="tab_message">
+            <div class="tab-pan<input type="text" class="form-control cye-lm-tag" name="name" id="name">e active" id="tab_message">
                   <div class="form-group">
                     <label class="col-sm-12"><?php echo $text_etap0; ?></label>
                   </div>
@@ -44,7 +44,7 @@
                     <thead>
                       <tr>
                         <td class="text-center"><?php echo $table_id;?></td>
-                        <td class="text-center"><?php echo $table_date_creature;?></td>
+                        <td cla<input type="text" class="form-control cye-lm-tag" name="name" id="name">ss="text-center"><?php echo $table_date_creature;?></td>
                         <td class="text-center"><?php echo $table_date_cellback;?></td>
                         <td class="text-center"><?php echo $table_name;?></td>
                         <td class="text-center"><?php echo $table_telepfon;?></td>
@@ -83,90 +83,39 @@
               <div class="form-group">
                 <label class="col-sm-12"><?php echo $text_etap0; ?></label>
               </div>
-              <form action="#" method="post" id="form_category">
+              <form action="#" method="post" id="form_setting">
                 <div class="form-group">
-                   <label class="col-sm-12"><?php echo $text_etap1c; ?></label>
-                   <div class="col-sm-5">
-                     <?php
-                     foreach ($name_category as $category_name ){
-                       $c_del[] = $category_name;
-                     }
-                     if($n_category){
-                        foreach ($n_category as $table_c) {
-                          for ($i = 0, $size = count($c_del); $i < $size; ++$i){
-                            if($table_c['ID'] == $c_del[$i]['category_id']){
-                                $temp_c[] = $i;
-                            }
-                          }
-                        }
-                        for ($i = 0, $size = count($temp_c); $i < $size; ++$i){
-                            unset($c_del[$temp_c[$i]]);
-                        }
-                      }
-                     ?>
-                   <select class="form-control c-id" name="category_id">
-                     <?php foreach ($c_del as $category_name){ ?>
-                       <option <?php echo "value='".$category_name['category_id']."'"; ?> ><?php echo $category_name['name']; ?></option>
-                     <?php } ?>
-                   </select>
-                   </div>
-                </div>
-                <div class="form-group required" id="etap2">
-                  <label class="col-sm-12"><?php echo $text_etap2; ?></label><br>
-                  <label class="col-sm-2"><?php echo $text_procent; ?></label>
-                  <div class="col-sm-2 c-procent">
-                    <input type="number" name = "procent"  class="form-control is-valid" value="0.00" min="-100" max="1000" step="0.01"/>
+                  <label class="control-label col-sm-6" for="focusedInput">Mail</label>
+                  <div class="col-sm-6">
+                      <input class="form-control" id="focusedInput" type="text" value="<?php echo $mail; ?>">
                   </div>
-                  <label class="col-sm-2"><?php echo $text_cheslo; ?></label>
-                  <div class="col-sm-2 c-cheslo">
-                    <input type="number" name = "cheslo"  class="form-control is-valid" value="0.00" min="-100" max="1000" step="0.01"/>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-6" for="focusedInput">Backgraund color</label>
+                  <div class="col-sm-6">
+                      <input class="form-control" id="focusedInput" type="text" value="<?php echo $bg_form; ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-6" for="focusedInput">Capcha</label>
+                  <div class="col-sm-6">
+                      <input class="form-control" id="focusedInput" type="text" value="<?php echo $capcha; ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-6" for="focusedInput">Capcha1 Key</label>
+                  <div class="col-sm-6">
+                      <input class="form-control" id="focusedInput" type="text" value="<?php echo $capcha1key; ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-6" for="focusedInput">Capcha2 Key</label>
+                  <div class="col-sm-6">
+                      <input class="form-control" id="focusedInput" type="text" value="<?php echo $capcha2key; ?>">
                   </div>
                 </div>
               </form>
-              <div class="form-group">
-                <label class="col-sm-12"><?php echo $text_etap3; ?></label>
-                <div class="col-sm-2" >
-                  <button type="button" class="btn btn-primary" id="send_c" ><?php echo $button_prim; ?></button>
-                </div>
-              </div>
-              <div class="col-sm-12" style="margin-top: 20px; padding: 10px;">
-                <h3 class="panel-title"><b><?php echo $table_header; ?></b></h3>
-              </div>
-              <table class="table table-striped table-hover table-bordered">
-                <thead>
-                  <tr>
-                    <td class="text-center"><?php echo $table_id;?></td>
-                    <td class="text-center"><?php echo $table_name;?></td>
-                    <td class="text-center"><?php echo $table_procent;?></td>
-                    <td class="text-center"><?php echo $table_cheslo;?></td>
-                    <td class="text-center"><?php echo $table_del;?></td>
-                    <td class="text-center"><?php echo $table_up;?></td>
-                  </tr>
-                </thead>
-                <?php if(!$n_category) { echo "<tr>
-                  <td class='text-center'>".$text_no_data."</td>
-                  <td class='text-center'>".$text_no_data."</td>
-                  <td class='text-center'>".$text_no_data."</td>
-                  <td class='text-center'>".$text_no_data."</td>
-                  <td class='text-center'>".$text_no_data."</td>
-                  <td class='text-center'>".$text_no_data."</td>
-                </tr>"; } else {?>
-                <?php foreach ($n_category as $table_c) { ?>
-                  <tr>
-                    <td class="text-center"><?php echo $table_c['ID'];?></td>
-                    <td class="text-center"><?php echo $table_c['Name_category'];?></td>
-                    <td class="text-center"><?php echo $table_c['Procent'];?></td>
-                    <td class="text-center"><?php echo $table_c['Cheslo'];?></td>
-                    <td class="text-center"><a href="#" data-toggle="tooltip" title="" class="btn btn-danger category-delete" <?php echo "data-original-title='".$del_help."'"; ?> ><i class="fa fa-trash-o"><input type="hidden" name="id_c" value="<?php echo $table_c['ID']; ?>"/></i></a></td>
-                    <td class="text-center">
-                      <button type="button" class="btn btn-primary" id="prim" style="display: none;"><?php echo $button_prim; ?></button>
-                      <button type="button" class="btn btn-danger" id="del" style="display: none;"><?php echo $button_del; ?></button>
-                      <button type="button" class="btn btn-success" id="success" style="display: inline;"><?php echo $button_red; ?></button>
-                    </td>
-                  </tr>
-                <?php } ?>
-                <?php } ?>
-              </table>
+
               </div>
           </div>
         <script type="text/javascript"><!--
