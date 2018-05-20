@@ -21,52 +21,69 @@ class ModelModuleUpdateprise extends Model {
 
 	public function InsertNew($newprice) {
 		$i = 0;
-		foreach ($newprice as $sku => $price) {
+		$sql_st = '';
 
-		$this->db->query("
-			Insert Into " . DB_PREFIX . "product set
-			model = CONCAT('us', ".$sku." ),
-			sku = ".$sku.",
-			price0 = ".$price.",
-			status = 1,
-			shipping = 1,
-			minimum = 1,
-			quantity = 10;
-		");
-		$this->db->query("
-			Insert Into " . DB_PREFIX . "product_description set
-			product_id = (Select max(product_id) From " . DB_PREFIX . "product),
-			language_id = 1,
-			name = '' ;
-		");
-		$this->db->query("
-			Insert Into " . DB_PREFIX . "product_to_store set
-			product_id = (Select max(product_id) From " . DB_PREFIX . "product),
-			store_id = 0;
-		");
-		/*
-		$this->db->query("
-			Update " . DB_PREFIX . "product Set
-			model =  product_id
-			Where sku = ".$sku.";
-		");
-		*/
-		$i++;
-	}
+		foreach ($newprice as $sku => $price) {
+			/*
+			$this->db->query("
+				Insert Into " . DB_PREFIX . "product set
+				model = CONCAT('us', ".$sku." ),
+				sku = ".$sku.",
+				price0 = ".$price.",
+				status = 1,
+				shipping = 1,
+				minimum = 1,
+				quantity = 10;
+			");
+			$this->db->query("
+				Insert Into " . DB_PREFIX . "product_description set
+				product_id = (Select max(product_id) From " . DB_PREFIX . "product),
+				language_id = 1,
+				name = '' ;
+			");
+			$this->db->query("
+				Insert Into " . DB_PREFIX . "product_to_store set
+				product_id = (Select max(product_id) From " . DB_PREFIX . "product),
+				store_id = 0;
+			");
+			*/
+			$sql_st = $sql_st." Insert Into " . DB_PREFIX . "product set model = CONCAT('us', ".$sku." ), sku = ".$sku.", price0 = ".$price.", status = 1, shipping = 1, minimum = 1, quantity = 10;"."Insert Into " . DB_PREFIX . "product_description set product_id = (Select max(product_id) From " . DB_PREFIX . "product), language_id = 1, name = '' ;"."Insert Into " . DB_PREFIX . "product_to_store set product_id = (Select max(product_id) From " . DB_PREFIX . "product), store_id = 0;"
+			/*
+			$this->db->query("
+				Update " . DB_PREFIX . "product Set
+				model =  product_id
+				Where sku = ".$sku.";
+			");
+			*/
+			$i++;
+		}
+
+		$this->db->query($sql_st);
+
 		return "Добавлено: $i";
 	}
 
 	public function Up0($equally) {
 		$i = 0;
+		$sql_st = '';
 		foreach ($equally as $sku => $value) {
+			$sql_st = $sql_st."
+			UPDATE " . DB_PREFIX . "product SET
+			status = 1,
+			shipping = 1
+			Where sku = '".$sku."';
+			";
+			/*
 		$this->db->query("
 			UPDATE " . DB_PREFIX . "product SET
 			status = 1,
 			shipping = 1
 			Where sku = '".$sku."';
 		");
+		*/
 		$i++;
 	}
+		$this->db->query($sql_st);
 		return "Без изменений: $i";
 	}
 
